@@ -1,0 +1,114 @@
+# Meta Horizon Creator Program: cosa dicono le fonti ufficiali
+
+Verifica del 22 settembre 2026 (issue #4). Solo fonti Meta: documentazione `developers.meta.com`, centro assistenza
+`meta.com/help`, forum ufficiale `communityforums.atmeta.com` (post dei Community Manager Meta), pagine Devpost delle
+competizioni gestite da Meta. Le citazioni sono nella lingua originale. Ogni numero senza fonte ufficiale è marcato
+**da verificare**. Le fonti complete sono in fondo.
+
+## 1. Eleggibilità Italia: SÌ
+
+L'Italia è eleggibile per iscriversi al programma, per monetizzare (vendite in-world, bonus quando esistono) e per le
+competizioni.
+
+- Pagina ufficiale "Monetization opportunities":
+  > "Monetization is currently available for members who are at least 18 years of age and physically located in the
+  > following countries: United States, Argentina, Austria, Australia, Belgium, Brazil, Canada, Denmark, Finland, France,
+  > Germany, Iceland, India, **Italy**, Ireland, Israel, Japan, Mexico, Netherlands, New Zealand, Norway, Poland, Singapore,
+  > Spain, Sweden, Switzerland, Taiwan, United Kingdom, Vietnam."
+- Termini del programma (ultimo aggiornamento 9 settembre 2025), sezione 1.b.ii: il creatore deve essere "physically
+  located in" un elenco di paesi che comprende **Italy**; 1.b.iii: "be at least eighteen (18) years of age".
+- Competizioni 2026 (Devpost, regole ufficiali): "Game Design" e "Game Prototype" elencano l'Italia tra i paesi ammessi.
+- Meta Credits (la valuta degli acquisti in-world) disponibili in Italia (centro assistenza Meta).
+
+Attenzione a un dettaglio dei Termini (1.g): il programma "is available to you solely for commercial and business purposes
+and the Creator Program is not open to any individual who may be defined as a consumer under applicable law". Chi incassa
+lo fa come attività professionale: rilevante per il patto (repo privato `team`) e per il commercialista.
+
+## 2. Le risposte alle sette domande
+
+| # | Domanda | Risposta | Fonte | Verifica |
+|---|---|---|---|---|
+| 1 | L'Italia è eleggibile per bonus e monetizzazione? | **Sì**, vedi §1. | [Monetization opportunities], [MHCP Terms], [Devpost Game Design 2026] | 2026-09-22 |
+| 2 | Requisiti per entrare nel programma | Età **18+**; risiedere in un paese supportato ("excluding Korea, Japan, and the U.S. Territories"); account Meta in regola; niente dipendenti Meta. L'ammissione è a discrezione di Meta ("Invited Creator" o "Confirmed Creator"), ma la FAQ dice che chi rispetta i requisiti "has been automatically enrolled". Serve un **PC Windows** ("our creation tools are not yet available on MacOS or Linux"), visore Quest facoltativo. Nessun requisito di mondo pubblicato o follower per entrare; per diventare *Partner* (livello superiore, facoltativo) servono 400 utenti attivi mensili in un mondo. | [MHCP FAQ], [MHCP Terms] | 2026-09-22 |
+| 3 | Quali bonus esistono oggi | **Periodo di transizione dal 1° giugno 2026.** I bonus "Time Spent on Mobile" e "In-World Purchase" sono sospesi: "These programs are not accepting new enrollments after May 28, 2026." Al loro posto un programma temporaneo con due bonus: **Monthly Stipend** ("All current MHCP creators who earned a mobile or IWP bonus during March - May of this year") e **Activity Bonus** ("Available only to creators recruited into the early access tooling", massimo 500 $ per creatore per periodo). Seguirà "a new metrics-driven bonus program", **senza data**. Il bonus VR è finito con i pagamenti di maggio 2026 (Worlds non esiste più in VR dal 15 giugno 2026). **Per un creatore nuovo oggi non c'è nessun bonus accessibile.** | [Bonus Program Overview], [Transition Update 03/2026] | 2026-09-22 |
+| 4 | Importi e soglie; come si calcola il tempo speso | Programma legacy (chiuso): quota di un **pool mensile** in base alla percentuale di tempo speso su mobile nei propri mondi rispetto a tutti i mondi del programma; soglia 50 ore di tempo eleggibile per periodo (30 ore a maggio 2026); il tempo di creatori, collaboratori, playtester e bot è escluso. Bonus IWP: soglia 600 visitatori unici mensili, moltiplicatore 70–110 % sugli incassi in base ai Meta Credits medi per visitatore. Programma attuale: stipendio = media dei bonus marzo–maggio 2026 (solo per chi li ha presi); Activity Bonus ≤ 500 $. Importi dei pool: **non pubblicati**. Fondo creatori 2025: 50 M$ (annuncio 20 febbraio 2025, "All $50 million will be paid out this year", cioè 2025). "Mobile milestone rewards" (premi una tantum a traguardi di utenti): **discontinuati**. | [Bonus Program Overview], [Blog fondo 50M], [GDC 2025] | 2026-09-22 |
+| 5 | Quota che Meta trattiene sulle vendite in-world | **Da verificare**: i "Creator In-World Purchase Terms" ufficiali sono leggibili solo dopo il login con un account del programma (issue #5). Fonti pubbliche ufficiali dicono solo che i bonus "are not subject to hardware platform fees and will be paid to creators in full" e che "Platform fees will be taken into account at the time a user purchases Meta Credits", con la revenue share calcolata sul prezzo in denaro. Prezzi degli oggetti: 25–20.000 Meta Credits. La stampa (2022, non ufficiale) riportava 25 % di fee Horizon più la fee dello store hardware (30 % su Quest, totale 47,5 %) e 25 % sul web: coerente con il "52,5 %" del kickoff, ma **non confermato** da una fonte ufficiale pubblica. | [Bonus Program Overview], [Meta Credits per sviluppatori], [IWP guide]; stampa: Road to VR 2022 | 2026-09-22 |
+| 6 | Come e quando paga Meta | Bonus: iscrizione **mensile** obbligatoria dal Developer Dashboard ("sign up begins 7 days before the 1st of each month", chiusura circa 8 giorni prima della fine del mese); pagamento "within 60 days following the end of each bonus period" sul "payout account". Un solo account per persona, non trasferibile (Termini 1.b). Fisco (Termini 14.b): importi "inclusive of applicable taxes", obbligo di fornire "tax ID, tax forms, documents", possibile ritenuta, **fatturazione IVA in self-billing** ("Meta will prepare and issue VAT invoices under a self-billing arrangement"). Metodo di pagamento e **importo minimo: non trovati** nelle pagine pubbliche → da verificare dal Dashboard (issue #5). | [Bonus Program Overview], [MHCP Terms] | 2026-09-22 |
+| 7 | Competizioni e bandi aperti adesso | **Nessuna aperta al 22 settembre 2026.** Nel 2026: "Game Design" (250.000 $, 8–22 giugno 2026, solo documenti di design, iscritti al programma entro il 1° giugno) e "Game Prototype" (300.000 $ tra premi e "completion grant", iscritti entro il 10 agosto; il forum ufficiale dà la chiusura delle consegne all'8 settembre 2026, Devpost indica il 9 ottobre come fine: **da verificare** quale sia la data finale). Nel 2025: Mobile Genre Showdown (1 M$), Open Source Champions (1 M$ + 0,5 M$), Mobile Genre Showdown Reloaded (2,5 M$, primi premi 200.000 $ per genere), Mobile Innovation (1,5 M$). L'Italia è sempre tra i paesi ammessi; serve essere iscritti al programma **prima** di una data indicata nel bando. Meta Connect è il 23 settembre 2026: probabile sede di annunci. | [Forum Events & Competitions], [Devpost Game Prototype], [Devpost Game Design], [Devpost Reloaded], [Blog Open Source Champions] | 2026-09-22 |
+
+### Contesto che cambia il quadro: la transizione 2026
+
+- 19 febbraio 2026, annuncio ufficiale: "VR and Worlds are becoming two separate platforms with distinct strategies. […]
+  Worlds is shifting to a mobile-first strategy." Blog Meta dello stesso giorno: "we're shifting the focus of Worlds to
+  be almost exclusively mobile"; "We grew mobile MAU over 4x in 2025"; "Four creators have hit the $1 million milestone
+  in lifetime revenue, and nearly a hundred earned six figures last year"; "we've grown mobile-only worlds from 0 to
+  2,000+ over the last year".
+- 17 marzo 2026: "the Horizon Worlds platform will become a mobile-only experience"; dal 15 giugno 2026 "the Horizon
+  Worlds app will be removed from Quest, and Worlds will no longer be available in VR and will instead be available only
+  through the Meta Horizon mobile app". I vantaggi Meta Horizon+ legati a Worlds (Meta Credits, abbigliamento digitale,
+  avatar, acquisti in-world) escono dall'abbonamento.
+- 9 giugno 2026: i Meta Credits non si comprano più nello store Horizon, "Meta Credits continue to be available in Horizon
+  Worlds".
+- Strumenti: Meta parla di "new creation tools", "early access tooling" e di Meta Horizon Studio/Engine. La competizione
+  "Game Prototype" (agosto–settembre 2026) chiedeva prototipi **Three.js/HTML5 in verticale, single-player, generati con
+  strumenti AI**, e i vincitori ricevono "a completion grant to rebuild their prototype on our Early Access creation tools".
+  Fonti non ufficiali (UploadVR, agosto 2026) parlano di una nuova app "Meta Horizon Create" con AI integrata: **da
+  verificare**. Conseguenza diretta per noi: lo stack "Desktop Editor + TypeScript" dato per scontato in `CLAUDE.md` va
+  confermato con l'issue #6, perché Meta sta spostando la creazione su strumenti nuovi.
+
+## 3. Cosa cambia per noi
+
+1. **L'Italia non è un blocco**: possiamo iscriverci, vendere oggetti e partecipare alle competizioni. Serve un account
+   18+ (Matteo, issue #5) e un PC Windows.
+2. **Il modello economico del kickoff non esiste oggi**: il bonus mensile sul tempo speso su mobile è chiuso ai nuovi
+   iscritti dal 28 maggio 2026; lo stipendio va solo a chi già guadagnava, l'Activity Bonus solo a chi è invitato agli
+   strumenti in early access. Un "nuovo programma bonus basato su metriche" è promesso senza data.
+3. **Le entrate possibili oggi** sono due: vendite in-world (quota Meta da verificare, plausibile ~50 %) e competizioni
+   (montepremi da 250.000 $ a 2,5 M$, primi premi 20.000–200.000 $, Italia ammessa, nessuna aperta al momento).
+4. **La piattaforma è in mezzo a un cambio di strumenti**: prima di scrivere codice di gioco va capito con l'issue #6 su
+   quale strumento si costruisce (Desktop Editor attuale o "early access tools"), perché costruire sullo strumento sbagliato
+   butta via mesi.
+5. **I numeri sentiti al kickoff**: fondo 50 M$ confermato ma riferito al 2025; "1.500 $ a 5.000 utenti" non trovato in
+   nessuna fonte ufficiale (i premi a traguardi sono stati discontinuati); "47,5 % a Meta" plausibile ma non confermato
+   pubblicamente; "bandi da 100.000 $" confermati dalle competizioni 2025.
+6. **Per il GO/NO-GO (#10)**: non è un NO-GO, ma la tesi "entrata mensile dai bonus" va sostituita con "competizioni +
+   vendite in-world, su strumenti che Meta sta cambiando". Vale la pena aspettare gli annunci di Meta Connect (23 settembre
+   2026) e l'esito di #6 prima di decidere.
+7. **Fisco**: il programma è dichiaratamente per uso commerciale e Meta fattura in self-billing IVA: la domanda "P.IVA sì
+   o no" del patto va posta al commercialista con questo dato in mano.
+
+## 4. Da verificare
+
+- Quota di Meta sulle vendite in-world (mobile/web): leggere i "Creator In-World Purchase Terms" dopo il login (issue #5).
+- Metodo di pagamento, importo minimo di pagamento e documenti fiscali richiesti: dal Developer Dashboard (issue #5).
+- Data di chiusura reale della competizione "Game Prototype" (8 settembre o 9 ottobre 2026) e quando arriva la prossima.
+- Il "new metrics-driven bonus program": quando, e se sarà aperto ai nuovi iscritti.
+- Cosa sono gli "early access creation tools" / "Meta Horizon Create" e se il Desktop Editor resta la via per pubblicare
+  mondi mobile (issue #6).
+- Disponibilità in UE degli strumenti di generazione AI (a giugno 2025 erano "coming soon to the European Union").
+
+## 5. Fonti
+
+Tutte lette il 22 settembre 2026.
+
+- [Bonus Program Overview]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/bonus-program-overview/
+- [Monetization opportunities]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/creator-monetization-partner-program/
+- [MHCP FAQ]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/faq/mhcp-faq/
+- [MHCP Terms] (Last updated: September 9, 2025): https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/policy-and-legal/meta-horizon-creator-program-terms/
+- [IWP guide]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/meta-horizon-worlds-inworld-purchase-guide/
+- Creator In-World Purchase Terms (richiede login): https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/policy-and-legal/creator-in-world-purchase-terms/
+- [Meta Credits per sviluppatori] (nota del 9 giugno 2026): https://developers.meta.com/horizon/resources/monetization-meta-credits-open-beta/
+- Meta Credits, centro assistenza (paesi, età): https://www.meta.com/help/quest/1543535462925767/
+- Paesi supportati per Worlds (centro assistenza): https://www.meta.com/help/quest/759652432136500/
+- [Blog fondo 50M] (20 febbraio 2025): https://developers.meta.com/horizon/blog/worlds/empowering-horizon-creators-with-a-new-50m-fund-and-advanced-tools-for-mobile-and-mr-worlds/
+- [GDC 2025] (20 marzo 2025): https://developers.meta.com/horizon/blog/worlds/gdc-2025-horizon-worlds-create-earn-bonuses-desktop-editor-tools/
+- Blog "Our Renewed Focus in 2026" (19 febbraio 2026): https://developers.meta.com/horizon/blog/2026-vr-state-of-the-union-horizon-mobile-focus/
+- Forum ufficiale, "A new strategy for Meta Horizon in 2026" (19 febbraio 2026): https://communityforums.atmeta.com/discussions/News_and_Announcements/a-new-strategy-for-meta-horizon-in-2026/1366781
+- [Transition Update 03/2026], forum ufficiale (17 marzo 2026): https://communityforums.atmeta.com/discussions/News_and_Announcements/horizon-transition-update-march-2026/1369560
+- [Forum Events & Competitions]: https://communityforums.atmeta.com/category/Meta_Horizon_Creator_Forums/discussions/Events_Competitions
+- [Devpost Game Prototype] (2026): https://mhcp-game-prototype.devpost.com/
+- [Devpost Game Design] (2026): https://mhcp-game-design.devpost.com/
+- [Devpost Reloaded] (2025): https://mhcp-mobile-genre-2.devpost.com/
+- [Blog Open Source Champions] (14 agosto 2025): https://developers.meta.com/horizon/blog/worlds/introducing-open-source-champions/
+- Stampa, non ufficiale, solo per la fee del 2022: https://www.roadtovr.com/meta-horizon-worlds-fees-metaverse/ e https://www.roadtovr.com/meta-web-horizon-worlds-creator-fees/
+- Stampa, non ufficiale, su "Horizon Create" (agosto 2026): https://www.uploadvr.com/meta-is-working-to-spin-off-worlds-from-the-horizon-mobile-app/
