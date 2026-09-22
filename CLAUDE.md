@@ -36,7 +36,8 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
 - **Il repo è pubblico.** Mai cifre, quote, dati fiscali, cognomi, email personali o accordi: vanno nel repo privato
   `ExhaustedTokens/team` (patto, rendiconto). In caso di dubbio, va lì.
-- Ogni compito è una issue; la board è il Project #1 dell'org. Aggiornare la issue, non raccontarlo in chat.
+- Ogni compito è una issue **nel formato standard** (template "Storia": storia, contesto, risultato atteso, criteri di accettazione verificabili, task, fuori scope, dipendenze, "per chi sviluppa", stima, priorità; template "Bug": passi, atteso, osservato, ambiente, priorità, criteri con il test che riproduce; vedi `docs/sviluppo.md` §9). La board è il Project #1 dell'org. Aggiornare la issue, non raccontarlo in chat.
+- Quando una PR viene mergiata, aggiornare il corpo delle issue collegate (stato, commit, cosa resta) e chiuderle con un commento finale.
 - Decisioni in `docs/decisioni.md` (data, decisione, motivo). Le decisioni economiche seguono il patto nel repo `team`.
 - Numeri su bonus e fondi Meta: citare sempre la fonte ufficiale, altrimenti scrivere "da verificare".
 

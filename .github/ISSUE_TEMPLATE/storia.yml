@@ -1,0 +1,99 @@
+name: Storia
+description: Una funzionalità, un documento o un compito da consegnare. Scritta in modo che chiunque, anche con un agente, possa svilupparla senza chiedere.
+title: '[Fase X] '
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Scrivi in **italiano**. Regole di lavoro in `docs/sviluppo.md` (§9 per le issue). Il repo è **pubblico**: niente cifre, quote, accordi, dati fiscali, cognomi o email. Tutto ciò che riguarda soldi o persone va nel repo privato `team` (link in "New issue").
+  - type: textarea
+    id: story
+    attributes:
+      label: Storia
+      description: Chi vuole cosa e perché.
+      placeholder: Come <ruolo>, voglio <cosa>, così da <valore>.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contesto
+      description: Perché adesso, cosa esiste già, link a decisioni e documenti.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Risultato atteso
+      description: Cosa esiste alla fine, con nome e posizione (file, documento, configurazione, mondo pubblicato).
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Criteri di accettazione
+      description: Un elenco di caselle, ciascuna verificabile da chiunque con un sì o un no. Niente "fatto bene", "quando serve".
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Task
+      description: I passi, in ordine, compresa la PR.
+      value: |
+        - [ ]
+        - [ ] PR `<tipo>: <descrizione in inglese>` verso `dev`
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Fuori scope
+      description: Cosa NON si fa in questa issue, così nessuno la allarga.
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dipendenze
+      value: |
+        - Bloccata da:
+        - Blocca:
+  - type: textarea
+    id: for-developers
+    attributes:
+      label: Per chi sviluppa (anche con un agente)
+      description: Ramo, file da toccare, comandi, dove va l'output, cosa non toccare.
+      value: |
+        - Ramo `<tipo>/<numero>-<slug>` da `dev`; PR verso `dev`, titolo conventional in inglese, descrizione in italiano
+        - File:
+        - Comandi: `docker compose run --rm tools npm run check`
+        - Non toccare:
+    validations:
+      required: true
+  - type: dropdown
+    id: estimate
+    attributes:
+      label: Stima
+      options:
+        - S (una sera)
+        - M (due o tre sere)
+        - L (una o due settimane di sere)
+        - XL (epic, da spaccare)
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorità
+      options:
+        - massima (percorso critico)
+        - alta
+        - media
+        - bassa
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        **Definition of Done** (vale per tutte le issue, vedi `docs/sviluppo.md` §9): criteri di accettazione tutti spuntati; PR mergiata su `dev` per qualsiasi modifica al repo (codice, documenti, configurazione, workflow); commento finale con l'esito; issue chiusa e su Done nella board. Niente cifre, quote, accordi o dati personali nei commenti: vanno nel repo `team`.

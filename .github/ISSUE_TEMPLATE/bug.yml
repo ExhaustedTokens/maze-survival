@@ -1,0 +1,87 @@
+name: Bug
+description: Qualcosa che non si comporta come dice il GDD o come ci si aspetta. Contratto più corto della Storia (docs/sviluppo.md §9). Ogni fix parte da un test che riproduce il bug.
+title: 'bug: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Scrivi in **italiano**. Il repo è **pubblico**: niente cifre, quote, accordi, dati fiscali, cognomi, email, né dati di altri giocatori (nomi utente, chat). Tutto ciò che riguarda soldi o persone va nel repo privato `team` (link in "New issue").
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passi per riprodurre
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento atteso
+      description: Cita la regola del GDD (`docs/gdd.md`, quando esisterà, issue #9) o la regola di `docs/sviluppo.md` che viene violata.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Comportamento osservato
+      description: Cosa succede davvero. Screenshot o video se aiutano.
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Dove si è visto il problema (anche più di uno).
+      multiple: true
+      options:
+        - Horizon su mobile
+        - Horizon su web
+        - Desktop Editor
+        - Test unitari (npm test)
+        - Pipeline (GitHub Actions)
+        - Documentazione
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versione o commit
+      placeholder: v0.3.0-rc.2 oppure sha del commit
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorità
+      options:
+        - bloccante (nessuno può giocare o lavorare)
+        - alta
+        - media
+        - bassa
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Criteri di accettazione
+      value: |
+        - [ ] Un test in `src/**/*.test.ts` riproduce il bug e fallisce prima del fix (TDD); se il bug è fuori dal codice (docs, pipeline), è indicato come si verifica
+        - [ ] Il test passa dopo il fix e `docker compose run --rm tools npm run check` è verde
+        - [ ] Verificato nell'ambiente in cui si era visto e annotato nella PR
+    validations:
+      required: true
+  - type: textarea
+    id: for-developers
+    attributes:
+      label: Per chi sviluppa (anche con un agente)
+      description: Se sai dove guardare, scrivilo qui. Facoltativo.
+      value: |
+        - Ramo `fix/<numero>-<slug>` da `dev`; PR `fix(<ambito>): <descrizione in inglese>` verso `dev`, descrizione in italiano
+        - File sospetti:
+        - Non toccare:
+  - type: markdown
+    attributes:
+      value: |
+        **Definition of Done** (uguale per tutte le issue, `docs/sviluppo.md` §9): criteri di accettazione tutti spuntati; PR mergiata su `dev` per qualsiasi modifica al repo; commento finale con l'esito; issue chiusa e su Done nella board. Un `fix` genera una versione patch.

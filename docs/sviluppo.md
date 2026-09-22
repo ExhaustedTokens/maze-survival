@@ -170,3 +170,32 @@ docker compose run --rm tools npm run format         # sistema la formattazione
 docker compose run --rm tools npm run lint:fix       # sistema quello che ESLint sa sistemare
 docker compose run --rm tools npm run build          # compila in dist/
 ```
+
+## 9. Issue e Definition of Done
+
+Ogni issue deve essere sviluppabile **da chiunque, anche con un agente AI, senza fare domande**. Si scrive dal template
+"Storia" (o "Bug") e ha sempre queste parti:
+
+| Parte | Cosa contiene | Errore tipico |
+|---|---|---|
+| **Storia** | "Come `<ruolo>`, voglio `<cosa>`, così da `<valore>`" | descrivere la soluzione invece del bisogno |
+| **Contesto** | perché adesso, cosa esiste già, link a decisioni e documenti | dare per scontato quello che sa solo chi era in call |
+| **Risultato atteso** | cosa esiste alla fine, con nome e posizione (file, documento, mondo) | "sistemare le trappole" |
+| **Criteri di accettazione** | caselle verificabili con un sì/no da chiunque | "fatto bene", "quando serve", "possibilmente" |
+| **Task** | i passi in ordine, compresa la PR con il titolo | — |
+| **Fuori scope** | cosa non si fa qui | issue che si allargano finché non si chiudono più |
+| **Dipendenze** | "Bloccata da / Blocca", con i numeri | lavoro che aspetta qualcosa senza dirlo |
+| **Per chi sviluppa** | ramo, file, comandi, output, cosa non toccare | — |
+| **Stima e priorità** | S / M / L / XL; massima / alta / media / bassa | — |
+
+**Definition of Done**, uguale per tutte: criteri di accettazione tutti spuntati; PR mergiata su `dev` per qualsiasi modifica al repo (codice,
+documenti, configurazione, workflow); **commento finale** nella issue con l'esito in poche righe; issue chiusa e spostata su Done nella board.
+
+**Igiene:** chi mergia una PR aggiorna il corpo delle issue collegate (stato, link al commit, cosa resta). Una issue
+il cui corpo non corrisponde più alla realtà è peggio di nessuna issue. Le idee non diventano issue: vanno nel backlog (#12).
+Cifre, accordi e dati personali non stanno mai qui: repo privato `team`.
+
+**Bug: contratto diverso, più corto** (template "Bug"): passi per riprodurre, comportamento atteso (con la regola del
+GDD o del documento violata), osservato, ambiente, versione, priorità, criteri di accettazione con il **test che riproduce
+il bug** scritto prima del fix, e "per chi sviluppa" se si sa dove guardare. Non servono storia, contesto, task e fuori
+scope: il bug è già lo scope. La Definition of Done è la stessa; il titolo della PR è `fix(<ambito>): ...` e genera una patch.

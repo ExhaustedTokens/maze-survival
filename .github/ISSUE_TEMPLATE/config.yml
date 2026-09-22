@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Soldi, accordi, dati personali
+    url: https://github.com/ExhaustedTokens/team/issues
+    about: Questo repo è pubblico. Tutto ciò che riguarda quote, pagamenti, fisco o persone va nel repo privato team.
+  - name: Idee per dopo
+    url: https://github.com/ExhaustedTokens/maze-survival/issues/12
+    about: Le idee che non entrano nel primo mondo si aggiungono al backlog, non diventano issue.
