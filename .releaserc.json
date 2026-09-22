@@ -1,0 +1,13 @@
+{
+  "branches": ["main", { "name": "staging", "prerelease": "rc" }],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/github",
+      {
+        "assets": [{ "path": "release/*.zip", "label": "Script compilati (dist)" }]
+      }
+    ]
+  ]
+}

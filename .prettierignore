@@ -1,0 +1,12 @@
+# Generati
+dist/
+release/
+coverage/
+node_modules/
+package-lock.json
+
+# Markdown: lo modificano anche non sviluppatori dal sito di GitHub, non deve far fallire la CI
+*.md
+
+# Asset binari e file dell'editor Horizon
+assets/

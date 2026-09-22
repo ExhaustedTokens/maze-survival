@@ -1,0 +1,15 @@
+# Fine riga LF ovunque, anche su Windows
+* text=auto eol=lf
+
+# Binari: niente conversioni, niente diff testuali
+*.blend binary
+*.fbx binary
+*.glb binary
+*.gltf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.zip binary

@@ -1,0 +1,12 @@
+# Toolchain in container, niente Node installato su Windows.
+# Uso: docker compose run --rm tools npm ci
+#      docker compose run --rm tools npm run check
+services:
+  tools:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      npm_config_update_notifier: 'false'
+    command: npm run check

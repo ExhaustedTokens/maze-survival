@@ -1,0 +1,79 @@
+name: promote
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Verso quale ambiente promuovere'
+        required: true
+        type: choice
+        options: [staging, production]
+
+concurrency:
+  group: promote
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  checks: read
+  actions: write
+
+jobs:
+  promote:
+    name: promote
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rami di origine e destinazione
+        id: refs
+        env:
+          TARGET: ${{ inputs.target }}
+        run: |
+          if [ "$TARGET" = "staging" ]; then FROM=dev; TO=staging; else FROM=staging; TO=main; fi
+          git fetch origin "$FROM" "$TO"
+          FROM_SHA=$(git rev-parse "origin/$FROM")
+          TO_SHA=$(git rev-parse "origin/$TO")
+          if [ "$FROM_SHA" = "$TO_SHA" ]; then
+            echo "::notice::niente da promuovere: $TO è già a $FROM ($TO_SHA)"
+            SKIP=true
+          elif ! git merge-base --is-ancestor "$TO_SHA" "$FROM_SHA"; then
+            echo "::error::$TO ha commit che non sono in $FROM: la storia non è lineare, riallineare a mano (vedi docs/sviluppo.md §2)"
+            exit 1
+          else
+            SKIP=false
+          fi
+          {
+            echo "from=$FROM"
+            echo "to=$TO"
+            echo "sha=$FROM_SHA"
+            echo "skip=$SKIP"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: La CI deve essere verde sul commit da promuovere
+        if: steps.refs.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ steps.refs.outputs.sha }}
+        run: |
+          CONCLUSION=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=ci" \
+            --jq '[.check_runs[] | select(.name == "ci")] | first | .conclusion // "missing"')
+          echo "check 'ci' su ${SHA}: ${CONCLUSION}"
+          [ "$CONCLUSION" = "success" ] || { echo "::error::la CI non è verde (${CONCLUSION}) su ${SHA}"; exit 1; }
+
+      - name: Fast-forward
+        if: steps.refs.outputs.skip == 'false'
+        env:
+          FROM_SHA: ${{ steps.refs.outputs.sha }}
+          TO: ${{ steps.refs.outputs.to }}
+        run: git push origin "${FROM_SHA}:refs/heads/${TO}"
+
+      - name: Avvia la release
+        if: steps.refs.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TO: ${{ steps.refs.outputs.to }}
+        run: gh workflow run release.yml --ref "$TO"

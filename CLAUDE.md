@@ -36,5 +36,21 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
 - Ogni compito è una issue; la board è il Project #1 dell'org. Aggiornare la issue, non raccontarlo in chat.
 - Decisioni in `docs/decisioni.md` (data, decisione, motivo). Le decisioni economiche seguono `docs/patto.md`.
-- Branch per issue, PR verso `main`, review di Matteo. Docs si possono toccare direttamente su `main`.
 - Numeri su bonus e fondi Meta: citare sempre la fonte ufficiale, altrimenti scrivere "da verificare".
+
+## Regole di sviluppo (dettagli in [docs/sviluppo.md](docs/sviluppo.md))
+
+- **Rami:** `main` (pubblicato) ⊆ `staging` (candidato) ⊆ `dev` (integrazione, default). Ramo di lavoro
+  `<tipo>/<issue>-<cosa>` → **PR verso `dev`**, squash merge. `staging` e `main` si muovono **solo** con il
+  workflow `promote` (fast-forward). Mai commit diretti su `staging`/`main`.
+- **Commit:** conventional commits, convenzione Angular (`feat`, `fix`, `perf`, `refactor`, `docs`, `test`,
+  `build`, `ci`, `chore`, `style`, `revert`). Il titolo della PR è il messaggio del commit: scriverlo così.
+  Versioni automatiche con semantic-release (rc su `staging`, finale su `main`): mai toccare la versione a mano.
+- **Principi:** KISS (funzioni ≤ 50 righe, complessità ≤ 10, imposto da ESLint), DRY con la regola del tre,
+  SOLID, design pattern solo per problemi reali e nominati nel codice (`MatchStateMachine`, `TrapFactory`).
+- **Qualità:** Prettier, ESLint strict type-checked + unicorn + sonarjs con zero warning, `tsc` strict al massimo,
+  Vitest. Tutto via Docker: `docker compose run --rm tools npm run check` deve passare prima di aprire la PR.
+  Niente `eslint-disable` senza un commento che spiega perché.
+- **Logica di gioco separata dalle API Horizon**, così si testa con Vitest senza l'editor.
+- **Pipeline:** `ci` (PR e push), `promote` (manuale, dev→staging→main), `release` (semantic-release, GitHub Release
+  con lo zip di `dist`). Il deploy nel mondo Horizon è manuale dal Desktop Editor finché Meta non offre un'API.

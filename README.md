@@ -19,7 +19,8 @@ Il costo per noi è quasi zero (abbonamenti AI), quindi si prova. I numeri senti
 - **Lo stato del lavoro è su GitHub**: ogni compito è una issue, la board è il
   [Project dell'org](https://github.com/orgs/ExhaustedTokens/projects/1). Se non è in una issue, non esiste.
 - Le decisioni vanno in [`docs/decisioni.md`](docs/decisioni.md).
-- Codice: un branch per issue, pull request verso `main`, review di Matteo.
+- Codice: un ramo per issue, pull request verso `dev` (squash), review di Matteo. `dev` → `staging` → `main`
+  si promuovono con un workflow; le versioni le fa semantic-release. Tutto in [`docs/sviluppo.md`](docs/sviluppo.md).
 - Chat veloce su Discord; tutto quello che deve durare più di un giorno finisce in una issue.
 - Nuovi nel team: partire da [`docs/onboarding.md`](docs/onboarding.md).
 
@@ -39,4 +40,5 @@ Le idee parcheggiate (ghost mode, escape room, prop hunt, carte, Beyblade, avata
 - [`docs/decisioni.md`](docs/decisioni.md) — registro delle decisioni
 - [`docs/patto.md`](docs/patto.md) — accordo tra i tre (bozza da discutere)
 - [`docs/onboarding.md`](docs/onboarding.md) — come entrare nel progetto: GitHub, Claude Code, regole
+- [`docs/sviluppo.md`](docs/sviluppo.md) — principi, rami, commit, versioni, qualità automatica, pipeline
 - [`CLAUDE.md`](CLAUDE.md) — contesto per Claude Code
