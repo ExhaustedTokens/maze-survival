@@ -31,7 +31,7 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
-      - name: Pacchetto di rilascio
+      - name: Release package
         run: |
           mkdir -p release
           (cd dist && zip -r "../release/maze-survival-dist-${GITHUB_SHA::7}.zip" .)

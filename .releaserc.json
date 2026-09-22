@@ -6,7 +6,7 @@
     [
       "@semantic-release/github",
       {
-        "assets": [{ "path": "release/*.zip", "label": "Script compilati (dist)" }]
+        "assets": [{ "path": "release/*.zip", "label": "Compiled scripts (dist)" }]
       }
     ]
   ]

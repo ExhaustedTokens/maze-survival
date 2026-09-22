@@ -1,4 +1,4 @@
-# OS / editor
+# OS / editors
 .DS_Store
 Thumbs.db
 *.swp
@@ -17,6 +17,6 @@ coverage/
 *.blend1
 *.blend2
 
-# Segreti: mai nel repo
+# Secrets: never in the repo
 .env
 *.secret

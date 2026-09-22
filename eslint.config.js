@@ -18,13 +18,13 @@ export default defineConfig([
       parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
     },
     rules: {
-      // KISS: funzioni piccole e piatte (vedi docs/sviluppo.md §1)
+      // KISS: small, flat functions (see docs/sviluppo.md §1)
       complexity: ['error', 10],
       'max-depth': ['error', 3],
       'max-lines-per-function': ['error', { max: 50, skipBlankLines: true, skipComments: true }],
       'max-params': ['error', 4],
       'sonarjs/cognitive-complexity': ['error', 10],
-      // Chiarezza
+      // Clarity
       eqeqeq: ['error', 'always'],
       'no-console': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
@@ -32,7 +32,7 @@ export default defineConfig([
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
-      // unicorn: i componenti Horizon usano file PascalCase, la logica pura kebab-case
+      // unicorn: Horizon components use PascalCase files, pure logic uses kebab-case
       'unicorn/filename-case': ['error', { cases: { kebabCase: true, pascalCase: true } }],
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/no-null': 'off',

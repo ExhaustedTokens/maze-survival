@@ -1,5 +1,5 @@
 {
-  "name": "dev: solo PR con squash e CI verde",
+  "name": "dev: pull requests only, squash merge, green CI",
   "target": "branch",
   "enforcement": "active",
   "conditions": { "ref_name": { "include": ["refs/heads/dev"], "exclude": [] } },

@@ -1,12 +1,12 @@
-# Generati
+# Generated
 dist/
 release/
 coverage/
 node_modules/
 package-lock.json
 
-# Markdown: lo modificano anche non sviluppatori dal sito di GitHub, non deve far fallire la CI
+# Markdown: non-developers edit it from the GitHub UI, it must not fail CI
 *.md
 
-# Asset binari e file dell'editor Horizon
+# Binary assets and Horizon editor files
 assets/

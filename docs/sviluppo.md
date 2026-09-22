@@ -3,6 +3,13 @@
 Come si scrive, si integra e si rilascia il codice di maze-survival. Valgono per tutti, Claude compreso.
 Comandi in fondo. Le regole si cambiano con una riga in `docs/decisioni.md`, non a voce.
 
+## 0. Lingua
+
+- **Inglese** per tutto ciò che sta nel codice e nel tooling: identificatori, commenti, messaggi di log ed errore,
+  nomi dei test, file di configurazione, workflow, **messaggi di commit e titoli delle PR** (il titolo diventa il commit).
+- **Italiano** per tutto ciò che è comunicazione tra noi: issue, descrizioni e discussioni delle PR, `docs/`, README,
+  `CLAUDE.md`, chat.
+
 ## 1. Principi
 
 **KISS.** La soluzione più semplice che funziona. Il prototipo (Fase 2) è un labirinto statico con due trappole:
@@ -16,7 +23,7 @@ un'astrazione alla terza ripetizione, non alla prima. Due righe simili non sono 
 - *Single responsibility*: un componente Horizon fa una cosa (il timer del round, la tribuna, una trappola). Se il nome ha una "e", sono due componenti.
 - *Open/closed*: le trappole implementano un'interfaccia comune; aggiungerne una non tocca il gestore della partita.
 - *Liskov*: ogni trappola è usabile ovunque serve "una trappola", senza casi speciali.
-- *Interface segregation*: interfacce piccole (`Attivabile`, `Eliminabile`), non un `GameObject` che sa tutto.
+- *Interface segregation*: interfacce piccole (`Activatable`, `Eliminable`), non un `GameObject` che sa tutto.
 - *Dependency inversion*: la logica di partita dipende da interfacce, non dagli oggetti concreti del mondo; le dipendenze si passano, non si cercano.
 
 **Design pattern.** Si usano quando risolvono un problema che c'è, e si nominano nel codice (`MatchStateMachine`, `TrapFactory`).
@@ -35,9 +42,10 @@ Tre rami lunghi, storia **lineare**: `main` ⊆ `staging` ⊆ `dev`.
 | `staging` | candidato al rilascio, provato nel mondo di staging | promozione fast-forward da `dev` (workflow `promote`) |
 | `main` | quello che è pubblicato | promozione fast-forward da `staging` (workflow `promote`) |
 
-- Ramo di lavoro: `<tipo>/<issue>-<cosa>`, es. `feat/23-tribuna-trappole`, `fix/31-timer-round`, `docs/12-gdd`.
+- Ramo di lavoro: `<type>/<issue>-<slug>` in inglese, es. `feat/23-tribune-traps`, `fix/31-round-timer`, `docs/12-gdd`.
   Un ramo per issue, vita breve, cancellato al merge (automatico).
-- PR sempre verso `dev`. Il **titolo della PR diventa il messaggio del commit** su `dev`: deve essere un conventional commit (sotto).
+- PR sempre verso `dev`. Il **titolo della PR diventa il messaggio del commit** su `dev`: deve essere un conventional commit
+  in inglese (sotto). La descrizione della PR è in italiano.
 - Promozione: da GitHub → Actions → `promote` → "Run workflow" → `staging` o `production`. Il workflow verifica che il
   fast-forward sia possibile e che la CI sia verde sul commit, poi sposta il ramo e lancia la release.
 - Nessun commit diretto su `staging` e `main`. Un hotfix è una PR su `dev` promossa subito: se qualcuno commette su `main`
@@ -45,11 +53,14 @@ Tre rami lunghi, storia **lineare**: `main` ⊆ `staging` ⊆ `dev`.
 
 ## 3. Commit e versioni
 
-**Conventional commits (convenzione Angular)**, controllati da commitlint sul titolo della PR:
+**Conventional commits (convenzione Angular)**, in inglese, controllati da commitlint sul titolo della PR:
 
 ```
-<tipo>(<ambito opzionale>): <descrizione all'imperativo, minuscola, senza punto>
+<type>(<optional scope>): <imperative description, lowercase, no trailing period>
 ```
+
+Esempi: `feat(tribune): let eliminated players trigger the first trap`, `fix(round): stop the timer when the maze empties`,
+`docs: describe the Blender export pipeline`.
 
 | tipo | quando | versione |
 |---|---|---|

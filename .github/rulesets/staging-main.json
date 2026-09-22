@@ -1,5 +1,5 @@
 {
-  "name": "staging e main: si muovono solo con il workflow promote",
+  "name": "staging and main: moved only by the promote workflow",
   "target": "branch",
   "enforcement": "active",
   "conditions": {

@@ -48,7 +48,7 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci
-      - name: Il titolo della PR deve essere un conventional commit
+      - name: PR title must be a conventional commit
         env:
           TITLE: ${{ github.event.pull_request.title }}
         run: echo "$TITLE" | npx commitlint

@@ -40,10 +40,12 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
 ## Regole di sviluppo (dettagli in [docs/sviluppo.md](docs/sviluppo.md))
 
+- **Lingua:** codice, commenti, identificatori, messaggi di log, test, config, workflow, **messaggi di commit e
+  titoli delle PR in inglese**. Issue, descrizioni delle PR, `docs/`, README, questo file e la chat in italiano.
 - **Rami:** `main` (pubblicato) ⊆ `staging` (candidato) ⊆ `dev` (integrazione, default). Ramo di lavoro
-  `<tipo>/<issue>-<cosa>` → **PR verso `dev`**, squash merge. `staging` e `main` si muovono **solo** con il
+  `<type>/<issue>-<slug>` → **PR verso `dev`**, squash merge. `staging` e `main` si muovono **solo** con il
   workflow `promote` (fast-forward). Mai commit diretti su `staging`/`main`.
-- **Commit:** conventional commits, convenzione Angular (`feat`, `fix`, `perf`, `refactor`, `docs`, `test`,
+- **Commit:** conventional commits in inglese, convenzione Angular (`feat`, `fix`, `perf`, `refactor`, `docs`, `test`,
   `build`, `ci`, `chore`, `style`, `revert`). Il titolo della PR è il messaggio del commit: scriverlo così.
   Versioni automatiche con semantic-release (rc su `staging`, finale su `main`): mai toccare la versione a mano.
 - **Principi:** KISS (funzioni ≤ 50 righe, complessità ≤ 10, imposto da ESLint), DRY con la regola del tre,

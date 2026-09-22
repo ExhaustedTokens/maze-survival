@@ -1,7 +1,7 @@
-# Fine riga LF ovunque, anche su Windows
+# LF line endings everywhere, Windows included
 * text=auto eol=lf
 
-# Binari: niente conversioni, niente diff testuali
+# Binaries: no conversions, no text diffs
 *.blend binary
 *.fbx binary
 *.glb binary

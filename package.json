@@ -2,7 +2,7 @@
   "name": "maze-survival",
   "version": "0.0.0-development",
   "private": true,
-  "description": "Maze survival per Meta Horizon Worlds (mobile/web)",
+  "description": "Maze survival world for Meta Horizon Worlds (mobile/web)",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",

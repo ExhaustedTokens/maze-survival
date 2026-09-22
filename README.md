@@ -21,6 +21,7 @@ Il costo per noi è quasi zero (abbonamenti AI), quindi si prova. I numeri senti
 - Le decisioni vanno in [`docs/decisioni.md`](docs/decisioni.md).
 - Codice: un ramo per issue, pull request verso `dev` (squash), review di Matteo. `dev` → `staging` → `main`
   si promuovono con un workflow; le versioni le fa semantic-release. Tutto in [`docs/sviluppo.md`](docs/sviluppo.md).
+- Lingua: **codice, commenti, commit e titoli delle PR in inglese**; issue, PR, documenti e chat in italiano.
 - Chat veloce su Discord; tutto quello che deve durare più di un giorno finisce in una issue.
 - Nuovi nel team: partire da [`docs/onboarding.md`](docs/onboarding.md).
 

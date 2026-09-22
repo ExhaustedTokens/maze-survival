@@ -1,6 +1,6 @@
-# Toolchain in container, niente Node installato su Windows.
-# Uso: docker compose run --rm tools npm ci
-#      docker compose run --rm tools npm run check
+# Toolchain in a container: no Node installed on Windows.
+# Usage: docker compose run --rm tools npm ci
+#        docker compose run --rm tools npm run check
 services:
   tools:
     image: node:22-alpine
