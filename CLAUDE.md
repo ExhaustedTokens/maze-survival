@@ -58,7 +58,7 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 - **Qualità:** Prettier, ESLint strict type-checked + unicorn + sonarjs con zero warning, `tsc` strict al massimo,
   Vitest con soglie di copertura. Tutto via Docker: `docker compose run --rm tools npm run check` deve passare
   prima di aprire la PR. Niente `eslint-disable` senza un commento che spiega perché.
-- **Pipeline:** `ci` (job `lint`, `test`, `build`, `pr-title` su PR e push), `copilot-review` (richiede la review di
+- **Pipeline:** `ci` (job `lint`, `test`, `build`, `pr-title` su PR e push), `pr-triage` (assegna la PR al suo autore e richiede la review di
   Copilot su ogni PR; Matteo è reviewer via `CODEOWNERS`), `promote` (manuale, dev→staging→main, solo con i tre job
   verdi; production richiede l'approvazione di Matteo), `release` (semantic-release, GitHub Release con lo zip di
   `dist`). `promote` usa il segreto `MAINTAINER_TOKEN`. Il deploy nel mondo Horizon è manuale

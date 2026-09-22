@@ -118,7 +118,7 @@ Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai
 |---|---|---|
 | `ci` | PR verso `dev`; push su `dev`, `staging`, `main` | quattro job in parallelo: `lint` (format, lint, typecheck), `test` (Vitest con soglie di copertura, report sulla PR), `build` (artefatto `dist`), `pr-title` (solo sulle PR) |
 | `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con `lint`, `test`, `build` verdi sul commit. Verso `production` il job parte solo dopo l'**approvazione di Matteo** (environment `production`). Spinge con il segreto `MAINTAINER_TOKEN` (§7); il push fa partire `release` |
-| `copilot-review` | PR aperta, riaperta o pronta per la review | richiede la code review di Copilot sulla PR (basta il `GITHUB_TOKEN`). Matteo è richiesto come reviewer da `CODEOWNERS` |
+| `pr-triage` | PR aperta, riaperta o pronta per la review | assegna la PR al suo autore e richiede la code review di Copilot (basta il `GITHUB_TOKEN`). Matteo è richiesto come reviewer da `CODEOWNERS` |
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
 **Deploy su Horizon.** Meta non offre (per quanto sappiamo oggi) un'API per pubblicare mondi: la pubblicazione passa dal
@@ -137,7 +137,7 @@ Ruleset attivi (sorgenti versionati in `.github/rulesets/`, si cambiano lì e si
 - `dev`: solo pull request, squash merge, i check `lint`, `test`, `build` e `pr-title` verdi, **1 approvazione**,
   conversazioni risolte; niente force push né cancellazione. Gli admin del repo possono fare bypass, ma solo
   esplicitamente dal bottone della PR, e resta tracciato. Su ogni PR vengono richiesti in automatico
-  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (workflow `copilot-review`). Copilot commenta,
+  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (workflow `pr-triage`, che assegna anche la PR al suo autore). Copilot commenta,
   non approva: l'approvazione resta di una persona.
 - `staging` e `main`: nessun push diretto, si muovono solo con il workflow `promote` (e dagli admin in emergenza);
   niente force push né cancellazione.
