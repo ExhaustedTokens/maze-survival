@@ -1,0 +1,35 @@
+name: pr-triage
+
+# Housekeeping when a pull request is opened, reopened or marked ready:
+# assign it to its author and request a Copilot code review.
+# Re-request Copilot by hand from the PR sidebar after a large rework.
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  triage:
+    name: triage
+    # Forks get a read-only token; drafts are handled when marked ready
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event.pull_request.number }}
+      AUTHOR: ${{ github.event.pull_request.user.login }}
+    steps:
+      - name: Assign the pull request to its author
+        run: |
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/issues/${PR}/assignees" -f "assignees[]=${AUTHOR}" > /dev/null
+          echo "#${PR} assigned to ${AUTHOR}"
+
+      - name: Request Copilot code review
+        # GITHUB_TOKEN is enough: Copilot accepts review requests from the Actions bot
+        run: |
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pulls/${PR}/requested_reviewers" \
+            -f 'reviewers[]=copilot-pull-request-reviewer[bot]' > /dev/null
+          echo "Copilot code review requested on #${PR}"

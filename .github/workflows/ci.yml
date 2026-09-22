@@ -60,8 +60,9 @@ jobs:
             echo "Thresholds: 80% on lines, functions, branches and statements (vitest.config.ts)."
           } > coverage/report.md
           cat coverage/report.md >> "$GITHUB_STEP_SUMMARY"
+      # PRs from forks run with a read-only token and cannot comment: the summary above still shows coverage
       - name: Coverage comment on the PR
-        if: always() && github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           GH_TOKEN: ${{ github.token }}
           PR: ${{ github.event.pull_request.number }}

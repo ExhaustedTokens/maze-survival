@@ -117,7 +117,8 @@ Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai
 | Workflow | Parte quando | Fa |
 |---|---|---|
 | `ci` | PR verso `dev`; push su `dev`, `staging`, `main` | quattro job in parallelo: `lint` (format, lint, typecheck), `test` (Vitest con soglie di copertura, report sulla PR), `build` (artefatto `dist`), `pr-title` (solo sulle PR) |
-| `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con CI verde; poi lancia `release` |
+| `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con `lint`, `test`, `build` verdi sul commit. Verso `production` il job parte solo dopo l'**approvazione di Matteo** (environment `production`). Spinge con il segreto `MAINTAINER_TOKEN` (§7); il push fa partire `release` |
+| `pr-triage` | PR aperta, riaperta o pronta per la review | assegna la PR al suo autore e richiede la code review di Copilot (basta il `GITHUB_TOKEN`). Matteo è richiesto come reviewer da `CODEOWNERS` |
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
 **Deploy su Horizon.** Meta non offre (per quanto sappiamo oggi) un'API per pubblicare mondi: la pubblicazione passa dal
@@ -135,9 +136,27 @@ Ruleset attivi (sorgenti versionati in `.github/rulesets/`, si cambiano lì e si
 
 - `dev`: solo pull request, squash merge, i check `lint`, `test`, `build` e `pr-title` verdi, **1 approvazione**,
   conversazioni risolte; niente force push né cancellazione. Gli admin del repo possono fare bypass, ma solo
-  esplicitamente dal bottone della PR, e resta tracciato.
+  esplicitamente dal bottone della PR, e resta tracciato. Su ogni PR vengono richiesti in automatico
+  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (workflow `pr-triage`, che assegna anche la PR al suo autore). Copilot commenta,
+  non approva: l'approvazione resta di una persona.
 - `staging` e `main`: nessun push diretto, si muovono solo con il workflow `promote` (e dagli admin in emergenza);
   niente force push né cancellazione.
+
+GitHub non permette di dare il bypass all'app "GitHub Actions", quindi il `GITHUB_TOKEN` del workflow non può spingere
+su `staging`/`main`. Per questo
+`promote` usa il segreto **`MAINTAINER_TOKEN`**: un PAT fine-grained di Matteo, limitato a questo
+repo con il solo permesso *Contents: read and write*, scadenza un anno (segnarsi il rinnovo). Senza
+segreto il workflow avvisa e il push viene rifiutato dal ruleset. Se un giorno dà fastidio il rinnovo, l'alternativa è una GitHub App dell'org con
+`actions/create-github-app-token`.
+
+Chiunque abbia accesso in scrittura può lanciare `promote`, ma il PAT non deve permettere a chiunque di spingere su
+`main`: il job usa gli **environment** `staging` (libero) e `production` (richiede l'approvazione di Matteo dalla pagina
+del run prima di partire). Quindi: promuovere a staging lo può fare chiunque del team, in produzione decide Matteo.
+
+Il segreto non è del repo ma degli **environment** `staging` e `production` (stesso valore in entrambi), e i due
+environment accettano solo run partiti dal ramo `dev` (deployment branch policy). Così un `promote.yml` modificato su
+un altro ramo non entra nell'environment e non vede il PAT, e per cambiare `promote.yml` su `dev` serve una PR approvata.
+`promote` si lancia sempre con "Use workflow from: dev".
 
 ## 8. Comandi
 

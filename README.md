@@ -19,8 +19,9 @@ Il costo per noi è quasi zero (abbonamenti AI), quindi si prova. I numeri senti
 - **Lo stato del lavoro è su GitHub**: ogni compito è una issue, la board è il
   [Project dell'org](https://github.com/orgs/ExhaustedTokens/projects/1). Se non è in una issue, non esiste.
 - Le decisioni vanno in [`docs/decisioni.md`](docs/decisioni.md).
-- Codice: un ramo per issue, pull request verso `dev` (squash), review di Matteo. `dev` → `staging` → `main`
-  si promuovono con un workflow; le versioni le fa semantic-release. Tutto in [`docs/sviluppo.md`](docs/sviluppo.md).
+- Codice: un ramo per issue, pull request verso `dev` (squash); su ogni PR Copilot fa una review automatica, Matteo è
+  richiesto come reviewer e serve un'approvazione. `dev` → `staging` → `main` si promuovono con un workflow (in produzione con l'ok di Matteo); le versioni
+  le fa semantic-release. Tutto in [`docs/sviluppo.md`](docs/sviluppo.md).
 - Lingua: **codice, commenti, commit e titoli delle PR in inglese**; issue, PR, documenti e chat in italiano.
 - **Questo repo è pubblico** (senza licenza open source: tutti i diritti riservati). Accordi, cifre, dati fiscali e
   personali stanno nel repo privato `team`. In caso di dubbio, `team`.
