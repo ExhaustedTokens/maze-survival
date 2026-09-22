@@ -42,7 +42,7 @@ jobs:
             echo "::warning::MAINTAINER_TOKEN secret is missing: falling back to GITHUB_TOKEN, which the staging/main ruleset rejects (docs/sviluppo.md §7)"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ secrets.MAINTAINER_TOKEN || github.token }}
