@@ -65,6 +65,9 @@ Un cambiamento incompatibile (salvataggi, API tra componenti) si segnala con `!`
 **Semantic Versioning, automatico.** Nessuno scrive numeri di versione a mano (`package.json` resta a `0.0.0-development`):
 - push su `staging` → `semantic-release` calcola la versione dai commit e pubblica una **pre-release** `X.Y.Z-rc.N` su GitHub Releases;
 - push su `main` → pubblica la release finale `X.Y.Z`, con tag, note di rilascio generate dai commit e lo zip degli script.
+- Punto di partenza: il tag `v0.1.0` messo al setup (nessun codice di gioco). Finché si resta in 0.x, un `feat` alza la
+  minor (0.2.0) e un `fix` la patch (0.1.1). Si passa a 1.0.0 quando il mondo è pubblicato e giocabile, con un
+  commit `feat!:` deliberato, non per caso.
 
 ## 4. Qualità automatica
 
