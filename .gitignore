@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Node / TypeScript
+node_modules/
+dist/
+*.log
+
+# Blender
+*.blend1
+*.blend2
+
+# Segreti: mai nel repo
+.env
+*.secret
