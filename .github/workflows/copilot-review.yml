@@ -1,0 +1,28 @@
+name: copilot-review
+
+# Requests a Copilot code review on every pull request as soon as it is ready.
+# Re-request it by hand from the PR sidebar after a large rework.
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  request:
+    name: request
+    # Forks get a read-only token; drafts are reviewed when marked ready
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Request Copilot code review
+        env:
+          # Copilot must be requested by an account that has Copilot; GITHUB_TOKEN is only a fallback
+          GH_TOKEN: ${{ secrets.MAINTAINER_TOKEN || github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pulls/${PR}/requested_reviewers" \
+            -f 'reviewers[]=copilot-pull-request-reviewer[bot]' > /dev/null
+          echo "Copilot code review requested on #${PR}"

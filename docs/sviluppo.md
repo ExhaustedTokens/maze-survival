@@ -117,7 +117,8 @@ Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai
 | Workflow | Parte quando | Fa |
 |---|---|---|
 | `ci` | PR verso `dev`; push su `dev`, `staging`, `main` | quattro job in parallelo: `lint` (format, lint, typecheck), `test` (Vitest con soglie di copertura, report sulla PR), `build` (artefatto `dist`), `pr-title` (solo sulle PR) |
-| `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con `lint`, `test`, `build` verdi sul commit. Spinge con il segreto `PROMOTE_TOKEN` (§7); il push fa partire `release` |
+| `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con `lint`, `test`, `build` verdi sul commit. Verso `production` il job parte solo dopo l'**approvazione di Matteo** (environment `production`). Spinge con il segreto `MAINTAINER_TOKEN` (§7); il push fa partire `release` |
+| `copilot-review` | PR aperta, riaperta o pronta per la review | richiede la code review di Copilot sulla PR (con `MAINTAINER_TOKEN`, perché serve un account con Copilot). Matteo è richiesto come reviewer da `CODEOWNERS` |
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
 **Deploy su Horizon.** Meta non offre (per quanto sappiamo oggi) un'API per pubblicare mondi: la pubblicazione passa dal
@@ -136,15 +137,21 @@ Ruleset attivi (sorgenti versionati in `.github/rulesets/`, si cambiano lì e si
 - `dev`: solo pull request, squash merge, i check `lint`, `test`, `build` e `pr-title` verdi, **1 approvazione**,
   conversazioni risolte; niente force push né cancellazione. Gli admin del repo possono fare bypass, ma solo
   esplicitamente dal bottone della PR, e resta tracciato. Su ogni PR vengono richiesti in automatico
-  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (impostazione del ruleset; serve un piano Copilot).
+  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (workflow `copilot-review`). Copilot commenta,
+  non approva: l'approvazione resta di una persona.
 - `staging` e `main`: nessun push diretto, si muovono solo con il workflow `promote` (e dagli admin in emergenza);
   niente force push né cancellazione.
 
 GitHub non permette di dare il bypass all'app "GitHub Actions", quindi il `GITHUB_TOKEN` del workflow non può spingere
-su `staging`/`main`. `promote` usa il segreto **`PROMOTE_TOKEN`**: un PAT fine-grained di un admin del repo, limitato a
-questo repo con il solo permesso *Contents: read and write*, scadenza un anno (segnarsi il rinnovo). Senza segreto il
-workflow avvisa e il push viene rifiutato dal ruleset. Se un giorno dà fastidio il rinnovo, l'alternativa è una GitHub App
-dell'org con `actions/create-github-app-token`.
+su `staging`/`main`, e non può nemmeno richiedere una review a Copilot (serve un account con Copilot). Per questo
+`promote` e `copilot-review` usano il segreto **`MAINTAINER_TOKEN`**: un PAT fine-grained di Matteo, limitato a questo
+repo con i soli permessi *Contents* e *Pull requests: read and write*, scadenza un anno (segnarsi il rinnovo). Senza
+segreto i workflow avvisano e falliscono. Se un giorno dà fastidio il rinnovo, l'alternativa è una GitHub App dell'org con
+`actions/create-github-app-token`.
+
+Chiunque abbia accesso in scrittura può lanciare `promote`, ma il PAT non deve permettere a chiunque di spingere su
+`main`: il job usa gli **environment** `staging` (libero) e `production` (richiede l'approvazione di Matteo dalla pagina
+del run prima di partire). Quindi: promuovere a staging lo può fare chiunque del team, in produzione decide Matteo.
 
 ## 8. Comandi
 

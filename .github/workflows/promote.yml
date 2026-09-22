@@ -23,26 +23,28 @@ jobs:
     name: promote
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    # production requires an approval from the environment reviewers (Matteo) before the job starts
+    environment: ${{ inputs.target }}
     env:
-      # Fine-grained PAT of a repo admin (Contents: read/write on this repo only).
+      # Fine-grained PAT of a repo admin (Contents and Pull requests: read/write on this repo only).
       # staging and main only accept pushes from bypass actors, and GitHub Actions cannot be one:
       # without this secret the fast-forward push is rejected by the ruleset (docs/sviluppo.md §7).
-      PROMOTE_TOKEN: ${{ secrets.PROMOTE_TOKEN }}
+      MAINTAINER_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
     steps:
       - name: Choose the push token
         id: auth
         run: |
-          if [ -n "$PROMOTE_TOKEN" ]; then
+          if [ -n "$MAINTAINER_TOKEN" ]; then
             echo "has_pat=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_pat=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::PROMOTE_TOKEN secret is missing: falling back to GITHUB_TOKEN, which the staging/main ruleset rejects (docs/sviluppo.md §7)"
+            echo "::warning::MAINTAINER_TOKEN secret is missing: falling back to GITHUB_TOKEN, which the staging/main ruleset rejects (docs/sviluppo.md §7)"
           fi
 
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.PROMOTE_TOKEN || github.token }}
+          token: ${{ secrets.MAINTAINER_TOKEN || github.token }}
 
       - name: Resolve source and target branches
         id: refs
