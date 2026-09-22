@@ -135,7 +135,8 @@ Ruleset attivi (sorgenti versionati in `.github/rulesets/`, si cambiano lì e si
 
 - `dev`: solo pull request, squash merge, i check `lint`, `test`, `build` e `pr-title` verdi, **1 approvazione**,
   conversazioni risolte; niente force push né cancellazione. Gli admin del repo possono fare bypass, ma solo
-  esplicitamente dal bottone della PR, e resta tracciato.
+  esplicitamente dal bottone della PR, e resta tracciato. Su ogni PR vengono richiesti in automatico
+  Matteo come reviewer (via `CODEOWNERS`) e la code review di Copilot (impostazione del ruleset; serve un piano Copilot).
 - `staging` e `main`: nessun push diretto, si muovono solo con il workflow `promote` (e dagli admin in emergenza);
   niente force push né cancellazione.
 
