@@ -153,6 +153,11 @@ Chiunque abbia accesso in scrittura può lanciare `promote`, ma il PAT non deve 
 `main`: il job usa gli **environment** `staging` (libero) e `production` (richiede l'approvazione di Matteo dalla pagina
 del run prima di partire). Quindi: promuovere a staging lo può fare chiunque del team, in produzione decide Matteo.
 
+Il segreto non è del repo ma degli **environment** `staging` e `production` (stesso valore in entrambi), e i due
+environment accettano solo run partiti dal ramo `dev` (deployment branch policy). Così un `promote.yml` modificato su
+un altro ramo non entra nell'environment e non vede il PAT, e per cambiare `promote.yml` su `dev` serve una PR approvata.
+`promote` si lancia sempre con "Use workflow from: dev".
+
 ## 8. Comandi
 
 ```bash

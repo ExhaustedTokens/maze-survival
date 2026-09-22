@@ -26,7 +26,8 @@ jobs:
     # production requires an approval from the environment reviewers (Matteo) before the job starts
     environment: ${{ inputs.target }}
     env:
-      # Fine-grained PAT of a repo admin (Contents: read/write on this repo only).
+      # Fine-grained PAT of a repo admin (Contents: read/write on this repo only), stored as an environment
+      # secret of staging and production; both environments only accept runs dispatched from dev.
       # staging and main only accept pushes from bypass actors, and GitHub Actions cannot be one:
       # without this secret the fast-forward push is rejected by the ruleset (docs/sviluppo.md §7).
       MAINTAINER_TOKEN: ${{ secrets.MAINTAINER_TOKEN }}
