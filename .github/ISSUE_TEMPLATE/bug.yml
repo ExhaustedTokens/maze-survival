@@ -1,0 +1,65 @@
+name: Bug
+description: Qualcosa che non si comporta come dice il GDD o come ci si aspetta. Ogni fix parte da un test che riproduce il bug.
+title: 'bug: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Scrivi in **italiano**. Il repo è **pubblico**: niente dati personali (anche di altri giocatori).
+  - type: textarea
+    id: passi
+    attributes:
+      label: Passi per riprodurre
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: atteso
+    attributes:
+      label: Comportamento atteso
+      description: Cita la regola del GDD (`docs/gdd.md`) se esiste.
+    validations:
+      required: true
+  - type: textarea
+    id: osservato
+    attributes:
+      label: Comportamento osservato
+      description: Cosa succede davvero. Screenshot o video se aiutano.
+    validations:
+      required: true
+  - type: dropdown
+    id: dove
+    attributes:
+      label: Dove
+      multiple: true
+      options:
+        - mobile
+        - web
+        - Desktop Editor
+        - test (npm test)
+        - pipeline (CI/CD)
+    validations:
+      required: true
+  - type: input
+    id: versione
+    attributes:
+      label: Versione o commit
+      placeholder: v0.3.0-rc.2 oppure sha del commit
+  - type: textarea
+    id: criteri
+    attributes:
+      label: Criteri di accettazione
+      value: |
+        - [ ] Un test in `src/**/*.test.ts` riproduce il bug e fallisce prima del fix (TDD)
+        - [ ] Il test passa dopo il fix e `npm run check` è verde
+        - [ ] Verificato dove si era visto (mobile/web) e annotato nella PR
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        PR verso `dev` con titolo `fix(<ambito>): <descrizione in inglese>`. Il fix genera una versione patch.
