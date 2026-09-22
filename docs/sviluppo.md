@@ -169,9 +169,14 @@ Ogni issue deve essere sviluppabile **da chiunque, anche con un agente AI, senza
 | **Per chi sviluppa** | ramo, file, comandi, output, cosa non toccare | — |
 | **Stima e priorità** | S / M / L / XL; massima / alta / media / bassa | — |
 
-**Definition of Done**, uguale per tutte: criteri di accettazione tutti spuntati; PR mergiata su `dev` se ci sono codice o
-documenti; **commento finale** nella issue con l'esito in poche righe; issue chiusa e spostata su Done nella board.
+**Definition of Done**, uguale per tutte: criteri di accettazione tutti spuntati; PR mergiata su `dev` per qualsiasi modifica al repo (codice,
+documenti, configurazione, workflow); **commento finale** nella issue con l'esito in poche righe; issue chiusa e spostata su Done nella board.
 
 **Igiene:** chi mergia una PR aggiorna il corpo delle issue collegate (stato, link al commit, cosa resta). Una issue
 il cui corpo non corrisponde più alla realtà è peggio di nessuna issue. Le idee non diventano issue: vanno nel backlog (#12).
 Cifre, accordi e dati personali non stanno mai qui: repo privato `team`.
+
+**Bug: contratto diverso, più corto** (template "Bug"): passi per riprodurre, comportamento atteso (con la regola del
+GDD o del documento violata), osservato, ambiente, versione, priorità, criteri di accettazione con il **test che riproduce
+il bug** scritto prima del fix, e "per chi sviluppa" se si sa dove guardare. Non servono storia, contesto, task e fuori
+scope: il bug è già lo scope. La Definition of Done è la stessa; il titolo della PR è `fix(<ambito>): ...` e genera una patch.
