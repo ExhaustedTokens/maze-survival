@@ -59,10 +59,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           SHA: ${{ steps.refs.outputs.sha }}
         run: |
-          CONCLUSION=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=ci" \
-            --jq '[.check_runs[] | select(.name == "ci")] | first | .conclusion // "missing"')
-          echo "check 'ci' on ${SHA}: ${CONCLUSION}"
-          [ "$CONCLUSION" = "success" ] || { echo "::error::CI is not green (${CONCLUSION}) on ${SHA}"; exit 1; }
+          FAILED=0
+          for CHECK in lint test build; do
+            CONCLUSION=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=${CHECK}" \
+              --jq "[.check_runs[] | select(.name == \"${CHECK}\")] | first | .conclusion // \"missing\"")
+            echo "check '${CHECK}' on ${SHA}: ${CONCLUSION}"
+            [ "$CONCLUSION" = "success" ] || FAILED=1
+          done
+          [ "$FAILED" = "0" ] || { echo "::error::CI is not green on ${SHA}"; exit 1; }
 
       - name: Fast-forward
         if: steps.refs.outputs.skip == 'false'

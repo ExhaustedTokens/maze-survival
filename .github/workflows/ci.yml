@@ -14,8 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  ci:
-    name: ci
+  lint:
+    name: lint
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -28,7 +28,70 @@ jobs:
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - name: Tests with coverage thresholds
+        run: npm run test:coverage
+      - name: Coverage summary
+        if: always()
+        run: |
+          [ -f coverage/coverage-summary.json ] || exit 0
+          {
+            echo "<!-- coverage-report -->"
+            echo "### Coverage (\`${GITHUB_SHA::7}\`)"
+            echo ""
+            echo "| Metric | Covered | % |"
+            echo "|---|---|---|"
+            jq -r '.total | {lines, statements, functions, branches} | to_entries[] | "| \(.key) | \(.value.covered)/\(.value.total) | \(.value.pct)% |"' coverage/coverage-summary.json
+            echo ""
+            echo "Thresholds: 80% on lines, functions, branches and statements (vitest.config.ts)."
+          } > coverage/report.md
+          cat coverage/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Coverage comment on the PR
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          [ -f coverage/report.md ] || exit 0
+          EXISTING=$(gh api "repos/${GITHUB_REPOSITORY}/issues/${PR}/comments" --paginate \
+            --jq '[.[] | select(.body | startswith("<!-- coverage-report -->"))] | first | .id // ""')
+          if [ -n "$EXISTING" ]; then
+            gh api -X PATCH "repos/${GITHUB_REPOSITORY}/issues/comments/${EXISTING}" -F body=@coverage/report.md > /dev/null
+          else
+            gh api "repos/${GITHUB_REPOSITORY}/issues/${PR}/comments" -F body=@coverage/report.md > /dev/null
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-${{ github.sha }}
+          path: coverage
+          retention-days: 7
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:

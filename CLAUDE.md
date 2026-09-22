@@ -50,9 +50,12 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
   Versioni automatiche con semantic-release (rc su `staging`, finale su `main`): mai toccare la versione a mano.
 - **Principi:** KISS (funzioni ≤ 50 righe, complessità ≤ 10, imposto da ESLint), DRY con la regola del tre,
   SOLID, design pattern solo per problemi reali e nominati nel codice (`MatchStateMachine`, `TrapFactory`).
+- **TDD:** prima il test, poi il codice (rosso → verde → refactor). Un `fix` parte da un test che riproduce il bug.
+  Logica di gioco pura in `src/core/` (testata, copertura ≥ 80 % o la CI fallisce), adattatori Horizon sottili e
+  senza logica in `src/horizon/`. Ciclo: `docker compose run --rm tools npm run test:watch`.
 - **Qualità:** Prettier, ESLint strict type-checked + unicorn + sonarjs con zero warning, `tsc` strict al massimo,
-  Vitest. Tutto via Docker: `docker compose run --rm tools npm run check` deve passare prima di aprire la PR.
-  Niente `eslint-disable` senza un commento che spiega perché.
-- **Logica di gioco separata dalle API Horizon**, così si testa con Vitest senza l'editor.
-- **Pipeline:** `ci` (PR e push), `promote` (manuale, dev→staging→main), `release` (semantic-release, GitHub Release
-  con lo zip di `dist`). Il deploy nel mondo Horizon è manuale dal Desktop Editor finché Meta non offre un'API.
+  Vitest con soglie di copertura. Tutto via Docker: `docker compose run --rm tools npm run check` deve passare
+  prima di aprire la PR. Niente `eslint-disable` senza un commento che spiega perché.
+- **Pipeline:** `ci` (job `lint`, `test`, `build`, `pr-title` su PR e push), `promote` (manuale, dev→staging→main,
+  solo con i tre job verdi), `release` (semantic-release, GitHub Release con lo zip di `dist`). Il deploy nel mondo
+  Horizon è manuale dal Desktop Editor finché Meta non offre un'API.

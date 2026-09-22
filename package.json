@@ -13,13 +13,15 @@
     "node": ">=22"
   },
   "scripts": {
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "build": "tsc -p tsconfig.build.json"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "semantic-release": "^25.0.0",
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.70.0",
+    "@vitest/coverage-v8": "^5.0.0",
     "vitest": "^5.0.0"
   }
 }

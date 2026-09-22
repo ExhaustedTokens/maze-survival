@@ -80,7 +80,25 @@ Un cambiamento incompatibile (salvataggi, API tra componenti) si segnala con `!`
   minor (0.2.0) e un `fix` la patch (0.1.1). Si passa a 1.0.0 quando il mondo è pubblicato e giocabile, con un
   commit `feat!:` deliberato, non per caso.
 
-## 4. Qualità automatica
+## 4. Test e TDD
+
+**Prima il test, poi il codice.** Ciclo: un test che descrive il comportamento e fallisce (rosso) → il minimo codice
+che lo fa passare (verde) → pulizia con i test verdi (refactor). Un `fix` parte sempre da un test che riproduce il bug;
+un `feat` arriva con i test che ne descrivono le regole. Il test è la specifica: se non sai scrivere il test, la
+regola di gioco non è ancora chiara e va chiarita nella issue, non nel codice.
+
+Perché sia possibile, il codice ha due zone:
+- `src/core/` (e in generale tutto tranne `src/horizon/`): **logica di gioco pura** in TypeScript, senza dipendenze
+  da Horizon. Stato della partita, eliminazioni, timer, regole delle trappole, punteggi. Qui vive il TDD.
+- `src/horizon/`: **adattatori sottili** verso le API di Horizon (componenti, eventi, entità). Nessun `if` di gioco:
+  ricevono eventi e chiamano il core. Si provano a mano nel mondo di staging.
+
+Copertura minima **80 %** su righe, funzioni, rami e istruzioni della zona core, misurata da Vitest: sotto, la CI fallisce.
+Il report appare come commento sulla PR e nel riepilogo del job `test`. La soglia si alza, non si abbassa.
+
+Ciclo TDD in locale: `docker compose run --rm tools npm run test:watch` rilancia i test a ogni salvataggio.
+
+## 5. Qualità automatica
 
 Tutto gira in Docker (`compose.yaml`), niente toolchain locale su Windows, e la CI ripete gli stessi comandi.
 
@@ -89,16 +107,16 @@ Tutto gira in Docker (`compose.yaml`), niente toolchain locale su Windows, e la 
 | **Prettier** | formattazione unica per TS, JS, JSON, YAML | CI (`format:check`); Markdown escluso: lo modificano anche non sviluppatori dal sito |
 | **ESLint** | `typescript-eslint` strict e stylistic *type-checked*, `unicorn`, `sonarjs`, limiti di complessità (§1) | CI, zero warning ammessi |
 | **tsc** | `strict` più `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `noUnusedLocals/Parameters`, `verbatimModuleSyntax` | CI (`typecheck`) |
-| **Vitest** | test unitari della logica di gioco (`src/**/*.test.ts`); la logica si scrive separata dalle API Horizon proprio per poterla testare | CI |
+| **Vitest** | test unitari della logica di gioco (`src/**/*.test.ts`) con copertura ≥ 80 % (§4) | CI (`test`) |
 | **commitlint** | titolo della PR conforme | CI (`pr-title`) |
 
 Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai `eslint-disable` senza commento che dice perché.
 
-## 5. Pipeline (GitHub Actions)
+## 6. Pipeline (GitHub Actions)
 
 | Workflow | Parte quando | Fa |
 |---|---|---|
-| `ci` | PR verso `dev`; push su `dev`, `staging`, `main` | `npm ci`, format, lint, typecheck, test, build; carica `dist` come artefatto; sulle PR controlla il titolo |
+| `ci` | PR verso `dev`; push su `dev`, `staging`, `main` | quattro job in parallelo: `lint` (format, lint, typecheck), `test` (Vitest con soglie di copertura, report sulla PR), `build` (artefatto `dist`), `pr-title` (solo sulle PR) |
 | `promote` | a mano (Run workflow) | fast-forward `dev`→`staging` o `staging`→`main`, solo con CI verde; poi lancia `release` |
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
@@ -107,7 +125,7 @@ Desktop Editor. Quindi la pipeline arriva fino all'artefatto versionato, e il "d
 importarlo nel mondo di **staging** (mondo privato di prova) o in quello di **produzione** (pubblico), e pubblicare.
 I passi esatti si scrivono nella issue #6 di Fase 1. Se in Fase 1 salta fuori un modo automatico, si aggiunge un job `deploy`.
 
-## 6. Protezione dei rami
+## 7. Protezione dei rami
 
 Le regole sopra sono **applicate dalla pipeline** ma, sul piano GitHub Free con repo privato, **non possono essere
 imposte dal server** (ruleset e branch protection sono a pagamento per i repo privati). I ruleset sono già scritti in
@@ -115,13 +133,15 @@ imposte dal server** (ruleset e branch protection sono a pagamento per i repo pr
 o l'org passa a Team. Fino ad allora: nessuno pusha su `staging`/`main`, tutti passano da PR su `dev`. È una regola di
 squadra, non un lucchetto.
 
-## 7. Comandi
+## 8. Comandi
 
 ```bash
-docker compose run --rm tools npm ci            # prima volta e dopo ogni cambio di dipendenze
-docker compose run --rm tools npm run check     # format + lint + typecheck + test: quello che fa la CI
-docker compose run --rm tools npm run format    # sistema la formattazione
-docker compose run --rm tools npm run lint:fix  # sistema quello che ESLint sa sistemare
-docker compose run --rm tools npm test          # solo i test
-docker compose run --rm tools npm run build     # compila in dist/
+docker compose run --rm tools npm ci                 # prima volta e dopo ogni cambio di dipendenze
+docker compose run --rm tools npm run check          # format + lint + typecheck + test con copertura: quello che fa la CI
+docker compose run --rm tools npm run test:watch     # ciclo TDD: rilancia i test a ogni salvataggio
+docker compose run --rm tools npm test               # solo i test, una volta
+docker compose run --rm tools npm run test:coverage  # test con report di copertura e soglie
+docker compose run --rm tools npm run format         # sistema la formattazione
+docker compose run --rm tools npm run lint:fix       # sistema quello che ESLint sa sistemare
+docker compose run --rm tools npm run build          # compila in dist/
 ```
