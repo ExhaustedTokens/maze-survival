@@ -5,6 +5,8 @@ Per chi entra nel progetto. Scritto pensando a chi non ha mai usato GitHub: se u
 ## 1. Cosa ti serve
 
 1. Un account **GitHub** (gratis, github.com). Manda a Matteo il tuo nome utente: ti arriva un invito all'org **ExhaustedTokens**, accettalo.
+   Con l'invito vedi anche il repo privato `team`, dove sta l'accordo tra noi: questo repo invece è pubblico, quindi
+   niente soldi, cognomi o dati personali qui dentro.
 2. **Discord**, nel canale del progetto: per le chiacchiere e le domande veloci.
 3. **Claude Code** (l'assistente AI da terminale): serve un abbonamento Claude. Installazione e primo avvio: https://claude.com/claude-code
 

@@ -22,6 +22,8 @@ Il costo per noi è quasi zero (abbonamenti AI), quindi si prova. I numeri senti
 - Codice: un ramo per issue, pull request verso `dev` (squash), review di Matteo. `dev` → `staging` → `main`
   si promuovono con un workflow; le versioni le fa semantic-release. Tutto in [`docs/sviluppo.md`](docs/sviluppo.md).
 - Lingua: **codice, commenti, commit e titoli delle PR in inglese**; issue, PR, documenti e chat in italiano.
+- **Questo repo è pubblico** (senza licenza open source: tutti i diritti riservati). Accordi, cifre, dati fiscali e
+  personali stanno nel repo privato `team`. In caso di dubbio, `team`.
 - Chat veloce su Discord; tutto quello che deve durare più di un giorno finisce in una issue.
 - Nuovi nel team: partire da [`docs/onboarding.md`](docs/onboarding.md).
 
@@ -39,7 +41,7 @@ Le idee parcheggiate (ghost mode, escape room, prop hunt, carte, Beyblade, avata
 ## Documenti
 
 - [`docs/decisioni.md`](docs/decisioni.md) — registro delle decisioni
-- [`docs/patto.md`](docs/patto.md) — accordo tra i tre (bozza da discutere)
+- Patto tra i tre — nel repo privato [`team`](https://github.com/ExhaustedTokens/team) (accordi, quote, rendiconto)
 - [`docs/onboarding.md`](docs/onboarding.md) — come entrare nel progetto: GitHub, Claude Code, regole
 - [`docs/sviluppo.md`](docs/sviluppo.md) — principi, rami, commit, versioni, qualità automatica, pipeline
 - [`CLAUDE.md`](CLAUDE.md) — contesto per Claude Code

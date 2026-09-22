@@ -34,8 +34,10 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
 ## Regole
 
+- **Il repo è pubblico.** Mai cifre, quote, dati fiscali, cognomi, email personali o accordi: vanno nel repo privato
+  `ExhaustedTokens/team` (patto, rendiconto). In caso di dubbio, va lì.
 - Ogni compito è una issue; la board è il Project #1 dell'org. Aggiornare la issue, non raccontarlo in chat.
-- Decisioni in `docs/decisioni.md` (data, decisione, motivo). Le decisioni economiche seguono `docs/patto.md`.
+- Decisioni in `docs/decisioni.md` (data, decisione, motivo). Le decisioni economiche seguono il patto nel repo `team`.
 - Numeri su bonus e fondi Meta: citare sempre la fonte ufficiale, altrimenti scrivere "da verificare".
 
 ## Regole di sviluppo (dettagli in [docs/sviluppo.md](docs/sviluppo.md))

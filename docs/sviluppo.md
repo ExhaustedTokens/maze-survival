@@ -125,13 +125,19 @@ Desktop Editor. Quindi la pipeline arriva fino all'artefatto versionato, e il "d
 importarlo nel mondo di **staging** (mondo privato di prova) o in quello di **produzione** (pubblico), e pubblicare.
 I passi esatti si scrivono nella issue #6 di Fase 1. Se in Fase 1 salta fuori un modo automatico, si aggiunge un job `deploy`.
 
-## 7. Protezione dei rami
+## 7. Protezione dei rami e repo pubblico
 
-Le regole sopra sono **applicate dalla pipeline** ma, sul piano GitHub Free con repo privato, **non possono essere
-imposte dal server** (ruleset e branch protection sono a pagamento per i repo privati). I ruleset sono già scritti in
-`.github/rulesets/` e si importano in un minuto da *Settings → Rules → Rulesets → Import* quando il repo diventa pubblico
-o l'org passa a Team. Fino ad allora: nessuno pusha su `staging`/`main`, tutti passano da PR su `dev`. È una regola di
-squadra, non un lucchetto.
+Il repo è **pubblico** proprio per poter usare i ruleset di GitHub (sul piano Free non valgono sui repo privati).
+Conseguenza: qui non entrano mai cifre, quote, dati fiscali, cognomi, email personali o accordi; stanno nel repo
+privato `ExhaustedTokens/team`. Il codice è visibile ma senza licenza open source: tutti i diritti riservati.
+
+Ruleset attivi (sorgenti versionati in `.github/rulesets/`, si cambiano lì e si riapplicano):
+
+- `dev`: solo pull request, squash merge, i check `lint`, `test`, `build` e `pr-title` verdi, **1 approvazione**,
+  conversazioni risolte; niente force push né cancellazione. Gli admin del repo possono fare bypass, ma solo
+  esplicitamente dal bottone della PR, e resta tracciato.
+- `staging` e `main`: nessun push diretto, si muovono solo con il workflow `promote` (e dagli admin in emergenza);
+  niente force push né cancellazione.
 
 ## 8. Comandi
 
