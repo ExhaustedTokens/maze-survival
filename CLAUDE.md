@@ -61,5 +61,5 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 - **Pipeline:** `ci` (job `lint`, `test`, `build`, `pr-title` su PR e push), `copilot-review` (richiede la review di
   Copilot su ogni PR; Matteo è reviewer via `CODEOWNERS`), `promote` (manuale, dev→staging→main, solo con i tre job
   verdi; production richiede l'approvazione di Matteo), `release` (semantic-release, GitHub Release con lo zip di
-  `dist`). `promote` e `copilot-review` usano il segreto `MAINTAINER_TOKEN`. Il deploy nel mondo Horizon è manuale
+  `dist`). `promote` usa il segreto `MAINTAINER_TOKEN`. Il deploy nel mondo Horizon è manuale
   dal Desktop Editor finché Meta non offre un'API.

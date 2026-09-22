@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: Request Copilot code review
         env:
-          # Copilot must be requested by an account that has Copilot; GITHUB_TOKEN is only a fallback
-          GH_TOKEN: ${{ secrets.MAINTAINER_TOKEN || github.token }}
+          # GITHUB_TOKEN is enough: Copilot accepts review requests from the Actions bot
+          GH_TOKEN: ${{ github.token }}
           PR: ${{ github.event.pull_request.number }}
         run: |
           gh api -X POST "repos/${GITHUB_REPOSITORY}/pulls/${PR}/requested_reviewers" \
