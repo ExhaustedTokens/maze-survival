@@ -130,3 +130,20 @@ Tutte lette il 22 settembre 2026.
 - [Forum Events & Competitions]: https://communityforums.atmeta.com/category/Meta_Horizon_Creator_Forums/discussions/Events_Competitions
 - [Devpost Game Prototype] (2026): https://mhcp-game-prototype.devpost.com/
 - [Devpost Game Design] (2026): https://mhcp-game-design.devpost.com/
+
+<!-- Definizioni dei link usati nelle tabelle: GitHub le rende cliccabili, non compaiono nel testo. -->
+[Bonus Program Overview]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/bonus-program-overview/
+[Monetization opportunities]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/creator-monetization-partner-program/
+[MHCP FAQ]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/faq/mhcp-faq/
+[MHCP Terms]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/policy-and-legal/meta-horizon-creator-program-terms/
+[IWP guide]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/mhcp-program/monetization/meta-horizon-worlds-inworld-purchase-guide/
+[Meta Credits per sviluppatori]: https://developers.meta.com/horizon/resources/monetization-meta-credits-open-beta/
+[Blog fondo 50M]: https://developers.meta.com/horizon/blog/worlds/empowering-horizon-creators-with-a-new-50m-fund-and-advanced-tools-for-mobile-and-mr-worlds/
+[GDC 2025]: https://developers.meta.com/horizon/blog/worlds/gdc-2025-horizon-worlds-create-earn-bonuses-desktop-editor-tools/
+[Blog Open Source Champions]: https://developers.meta.com/horizon/blog/worlds/introducing-open-source-champions/
+[Blog Connect 2025]: https://developers.meta.com/horizon/blog/meta-connect-2025-top-four-reasons-to-build-worlds-horizon/
+[Blog Mobile Innovation]: https://developers.meta.com/horizon/blog/announcing-meta-horizon-mobile-innovation-winners/
+[Transition Update 03/2026]: https://communityforums.atmeta.com/discussions/News_and_Announcements/horizon-transition-update-march-2026/1369560
+[Forum Events & Competitions]: https://communityforums.atmeta.com/category/Meta_Horizon_Creator_Forums/discussions/Events_Competitions
+[Devpost Game Prototype]: https://mhcp-game-prototype.devpost.com/
+[Devpost Game Design]: https://mhcp-game-design.devpost.com/
