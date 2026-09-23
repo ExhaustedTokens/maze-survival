@@ -9,10 +9,12 @@ Si lavora la sera, a tempo perso, in italiano.
 
 ## Perché
 
-Meta paga i creatori di mondi tramite il **Horizon Creator Program**: traguardi di utenti, bonus mensili
-su tempo speso e ritorni, una quota sulle vendite in-world. I bonus oggi premiano soprattutto mobile e web.
-Il costo per noi è quasi zero (abbonamenti AI), quindi si prova. I numeri sentiti in giro
-(fondo da 50M$, soglie, percentuali) **vanno verificati sui termini ufficiali** prima di contarci: è la Fase 1.
+Meta paga i creatori di mondi tramite il **Horizon Creator Program**: vendite in-world, competizioni con premi in
+denaro e, quando esiste, un programma bonus. La verifica sulle fonti ufficiali è in
+[`docs/creator-program.md`](docs/creator-program.md) (22 settembre 2026): l'Italia è eleggibile, ma il programma
+bonus è chiuso ai nuovi iscritti da maggio 2026 e la piattaforma è in transizione: focus quasi esclusivo sul mobile
+(blog Meta, febbraio 2026) e nuovi strumenti di creazione ancora da capire.
+Il costo per noi resta quasi zero (abbonamenti AI), quindi si prova, con la decisione GO/NO-GO (#10) presa su questi dati.
 
 ## Come lavoriamo
 
