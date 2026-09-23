@@ -49,4 +49,5 @@ Le idee parcheggiate (ghost mode, escape room, prop hunt, carte, Beyblade, avata
 - Patto tra i tre — nel repo privato [`team`](https://github.com/ExhaustedTokens/team) (accordi, quote, rendiconto)
 - [`docs/onboarding.md`](docs/onboarding.md) — come entrare nel progetto: GitHub, Claude Code, regole
 - [`docs/sviluppo.md`](docs/sviluppo.md) — principi, rami, commit, versioni, qualità automatica, pipeline
+- [`docs/pipeline-3d.md`](docs/pipeline-3d.md) — da Blender a Horizon: regole, materiali, budget degli asset (#7)
 - [`CLAUDE.md`](CLAUDE.md) — contesto per Claude Code
