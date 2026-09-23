@@ -42,13 +42,13 @@ materiale più il suffisso dei canali. `NomeMateriale` è un segnaposto.
 |---|---|---|---|
 | PBR standard (nessun suffisso) | `NomeMateriale_BR.png` | colore base (sRGB) + rugosità | muri, pavimenti, trappole |
 | Metallo (`_Metal`) | `NomeMateriale_BR.png` | come sopra, metallicità = 1 | lame, cannoni |
-| PBR a due texture | `_BR.png` + `NomeMateriale_MEO.png` | + metallicità, emissione, occlusione | parti che si illuminano (pulsanti delle trappole) |
+| PBR a due texture | `NomeMateriale_BR.png` + `NomeMateriale_MEO.png` | + metallicità, emissione, occlusione | parti che si illuminano (pulsanti delle trappole) |
 | Non illuminato (`_Unlit`) | `NomeMateriale_B.png` | solo colore base | cartelli, segnali sempre leggibili |
 | Non illuminato con trasparenza (`_Blend`) | `NomeMateriale_BA.png` | colore + alfa | effetti, aloni |
-| Trasparente (`_Transparent`) | `_BR.png` + `NomeMateriale_MESA.png` | + metallo, emissione, speculare, alfa | vetri |
+| Trasparente (`_Transparent`) | `NomeMateriale_BR.png` + `NomeMateriale_MESA.png` | + metallo, emissione, speculare, alfa | vetri |
 | Ritagliato (`_Masked`, `_MaskedVXM`) | `NomeMateriale_BA.png` | colore + alfa, taglio a 0,5 | grate, recinzioni |
 | Colore ai vertici (`_VXC`) | nessuna | solo colore dei vertici | oggetti semplici, gradienti |
-| Colore ai vertici × texture (`_VXM`) | `_BR.png` (+ `_MEO.png`) | colore dei vertici moltiplicato per la texture | stessa texture in colori diversi (varianti delle trappole) |
+| Colore ai vertici × texture (`_VXM`) | `NomeMateriale_BR.png` (+ `NomeMateriale_MEO.png`) | colore dei vertici moltiplicato per la texture | stessa texture in colori diversi (varianti delle trappole) |
 | Interfaccia (`_UIO`) | `NomeMateriale_BA.png` | colore + alfa, non illuminato | testi e icone nel mondo |
 
 Esempio corretto: materiale `SwingingBlade_Metal`, texture `SwingingBlade_BR.png` (il suffisso `_Metal` non entra nel
@@ -56,7 +56,7 @@ nome della texture). Più materiali per mesh sono ammessi e più mesh possono co
 
 ## 4. Budget
 
-**Limiti ufficiali** (valgono per tutto il mondo, vedi anche `docs/stack.md` §6):
+**Limiti ufficiali** (valgono per tutto il mondo):
 
 | Cosa | Valore Meta |
 |---|---|
