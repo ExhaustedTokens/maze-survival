@@ -26,7 +26,7 @@ le issue con etichetta `fase-1` e la decisione GO/NO-GO.
   raccomanda Git: si lavora fuori da quella cartella, si mergia con PR, poi `git pull` dentro la cartella; i mondi
   clone fanno da rami (staging = clone, produzione = mondo principale). Il deploy non si automatizza dalla CI.
 - **Blender** per gli asset: FBX + PNG, niente animazioni importate, niente normal map; convenzioni e budget in
-  [docs/pipeline-3d.md](docs/pipeline-3d.md). Il mondo va creato come "custom model world".
+  `docs/pipeline-3d.md` (issue #7, PR #20). Il mondo va creato come "custom model world".
 - Limiti chiave: 32 giocatori per istanza, 3.000 oggetti con mesh, 4,2 ms di simulazione per oggetti in movimento,
   trigger e fisica.
 - Horizon Studio (Beta) e "early access tooling" esistono ma non hanno documentazione pubblica: non ci si costruisce

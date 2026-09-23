@@ -166,3 +166,22 @@ Tutte su `developers.meta.com`, lette il 23 settembre 2026. Prefisso comune: `ht
 - [Custom model getting started]: `custom-model-import/getting-started-with-custom-model-import/`
 - Note di rilascio (ultima elencata: "Meta Horizon v250"): `https://developers.meta.com/horizon-worlds/release-notes/`
 - Horizon Studio Beta ed "early access tooling" citati in: `mhcp-program/monetization/bonus-program-overview/`
+
+<!-- Definizioni dei link usati nelle tabelle: GitHub le rende cliccabili, non compaiono nel testo. -->
+[Tools overview]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/get-started/tools-overview/
+[Install]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/get-started/install-desktop-editor/
+[TS]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/typescript/getting-started/managing-typescript/
+[Script]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/desktop-editor/getting-started/adding-and-editing-scripts/
+[VCS]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/typescript/recommended-version-control-strategies/
+[File-backed]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/vr-creation/scripting/use-file-backed-scripts/
+[Project structure]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/desktop-editor/getting-started/project-structure/
+[Preview mode]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/desktop-editor/getting-started/preview-mode/
+[Test mobile/web]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/create-for-web-and-mobile/how-to-test-on-web-and-mobile/
+[Publish mobile]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/create-for-web-and-mobile/publishing-worlds-on-mobile/
+[Collaborators]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/desktop-editor/getting-started/collaborator-management/
+[Capacity dialog]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/desktop-editor/getting-started/world-capacity/
+[Capacity limits]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/save-optimize-and-publish/capacity-limits-in-horizon/
+[Performance limits]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/performance-best-practices-and-tooling/performance-limits-for-a-world/
+[Memory limits]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/performance-best-practices-and-tooling/memory-limits-in-horizon-worlds/
+[Custom model best practices]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/custom-model-import/creating-custom-models-for-horizon-worlds/best-practices/
+[Custom model getting started]: https://developers.meta.com/horizon-worlds/documentation/desktop-editor/custom-model-import/getting-started-with-custom-model-import/
