@@ -14,15 +14,23 @@ Dettagli e piano a fasi nel [README](README.md).
 Fase 0/1: setup e validazione. **Non c'è ancora codice.** Prima di scrivere codice di gioco vanno chiuse
 le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
-## Stack (da confermare in Fase 1)
+## Stack (documentazione verificata, prova pratica in corso: [docs/stack.md](docs/stack.md))
 
-- **Meta Horizon Desktop Editor** con scripting **TypeScript** (Horizon TypeScript API). È la via ufficiale
-  per i mondi; gira su Windows in locale, ed è l'eccezione alla regola "tutto in Docker/WSL" del workspace.
-  Tooling TypeScript (lint, test) può stare in Docker.
-- **Blender** per gli asset 3D (trappole, gadget, skin), esportati e importati nell'editor.
-  Su mobile contano poligoni e texture: budget da definire nella issue della pipeline.
-- Meta ha annunciato strumenti Unity e generativi per Horizon: cosa sia disponibile davvero per mobile
-  si verifica in Fase 1, non si dà per scontato.
+- **Meta Horizon Desktop Editor** (solo Windows, gratuito) con scripting **TypeScript**: è l'unico strumento
+  documentato e aperto a tutti; gli strumenti VR sono "legacy". Gira in locale su Windows, eccezione alla regola
+  "tutto in Docker/WSL"; lint e test restano in Docker.
+- **L'editor compila lui il TypeScript** e, secondo la documentazione, richiede **TypeScript 4.7.4**: il codice che
+  finisce nel mondo non deve usare sintassi 5.x (`satisfies`, parametri `const`, ecc.) finché la prova (#6) non dice
+  altrimenti.
+- **Il codice vive nella "auto-sync directory"** dell'editor, sincronizzata con il mondo nei due sensi. Meta
+  raccomanda Git: si lavora fuori da quella cartella, si mergia con PR, poi `git pull` dentro la cartella; i mondi
+  clone fanno da rami (staging = clone, produzione = mondo principale). Il deploy non si automatizza dalla CI.
+- **Blender** per gli asset: FBX + PNG, niente animazioni importate, niente normal map; convenzioni e budget in
+  [docs/pipeline-3d.md](docs/pipeline-3d.md). Il mondo va creato come "custom model world".
+- Limiti chiave: 32 giocatori per istanza, 3.000 oggetti con mesh, 4,2 ms di simulazione per oggetti in movimento,
+  trigger e fisica.
+- Horizon Studio (Beta) e "early access tooling" esistono ma non hanno documentazione pubblica: non ci si costruisce
+  sopra finché non sono chiari.
 
 ## Persone e ruoli
 
