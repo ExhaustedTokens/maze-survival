@@ -5,8 +5,9 @@ Vale anche il `CLAUDE.md` del workspace (`../../CLAUDE.md`): token dell'org via 
 ## Cos'è
 
 Un mondo per **Meta Horizon Worlds**, target **mobile e web** (non VR): maze survival stile Squid Game.
-Obiettivo: un mondo che tenga la gente in sessione e la faccia tornare, perché i bonus del
-Horizon Creator Program si calcolano su tempo speso, ritorni e vendite in-world.
+Obiettivo: un mondo che diverta e faccia tornare la gente. Le entrate possibili oggi sono vendite in-world e
+competizioni Meta; il programma bonus sul tempo speso è chiuso ai nuovi iscritti da maggio 2026 (verifica del
+22/09/2026 in [docs/creator-program.md](docs/creator-program.md)). Non promettere entrate dai bonus.
 Dettagli e piano a fasi nel [README](README.md).
 
 ## Stato

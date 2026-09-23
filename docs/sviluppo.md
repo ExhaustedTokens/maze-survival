@@ -195,6 +195,10 @@ documenti, configurazione, workflow); **commento finale** nella issue con l'esit
 il cui corpo non corrisponde più alla realtà è peggio di nessuna issue. Le idee non diventano issue: vanno nel backlog (#12).
 Cifre, accordi e dati personali non stanno mai qui: repo privato `team`.
 
+**Board:** le issue nuove **non** entrano da sole nel Project #1. Chi apre una issue la aggiunge subito: dalla colonna
+destra della issue, "Projects" → `maze-survival`, oppure `tools/gh-et project item-add 1 --owner ExhaustedTokens --url <link della issue>`.
+Lo stato si aggiorna a mano quando si inizia (In Progress); chiudere la issue la porta su Done da sola.
+
 **Bug: contratto diverso, più corto** (template "Bug"): passi per riprodurre, comportamento atteso (con la regola del
 GDD o del documento violata), osservato, ambiente, versione, priorità, criteri di accettazione con il **test che riproduce
 il bug** scritto prima del fix, e "per chi sviluppa" se si sa dove guardare. Non servono storia, contesto, task e fuori
