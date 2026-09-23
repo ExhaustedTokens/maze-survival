@@ -121,10 +121,17 @@ Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai
 | `pr-triage` | PR aperta, riaperta o pronta per la review | assegna la PR al suo autore e richiede la code review di Copilot (basta il `GITHUB_TOKEN`). Matteo è richiesto come reviewer da `CODEOWNERS` |
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
-**Deploy su Horizon.** Meta non offre (per quanto sappiamo oggi) un'API per pubblicare mondi: la pubblicazione passa dal
-Desktop Editor. Quindi la pipeline arriva fino all'artefatto versionato, e il "deploy" è: scaricare lo zip della release,
-importarlo nel mondo di **staging** (mondo privato di prova) o in quello di **produzione** (pubblico), e pubblicare.
-I passi esatti si scrivono nella issue #6 di Fase 1. Se in Fase 1 salta fuori un modo automatico, si aggiunge un job `deploy`.
+**Deploy su Horizon.** Meta non offre un'API per pubblicare mondi: la pubblicazione passa dal Desktop Editor, che
+compila lui i file `.ts` presenti nella sua "auto-sync directory" (dettagli in [`stack.md`](stack.md) §3). Il flusso
+previsto, da confermare con la prova pratica della #6:
+
+1. `promote` porta il commit su `staging` o `main` (qualità garantita dalla CI).
+2. Chi pubblica apre nell'editor il mondo giusto: il **mondo clone** per `staging`, il **mondo principale** per `main`.
+3. Nella auto-sync directory di quel mondo, che è un clone Git del repo, fa `git pull` del ramo corrispondente.
+4. Verifica in anteprima (anche "Preview device: Mobile") e pubblica.
+
+Lo zip di `dist/` allegato oggi alle release non serve al mondo (ci vanno i sorgenti `.ts`): si rivede dopo la prova.
+Il deploy resta manuale: richiede l'editor aperto sul PC di chi pubblica.
 
 ## 7. Protezione dei rami e repo pubblico
 

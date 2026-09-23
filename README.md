@@ -44,6 +44,8 @@ Le idee parcheggiate (ghost mode, escape room, prop hunt, carte, Beyblade, avata
 ## Documenti
 
 - [`docs/decisioni.md`](docs/decisioni.md) — registro delle decisioni
+- [`docs/creator-program.md`](docs/creator-program.md) — cosa dicono le fonti Meta su eleggibilità, bonus, pagamenti, competizioni (#4)
+- [`docs/stack.md`](docs/stack.md) — Desktop Editor, dove vive il codice, test, pubblicazione, limiti (#6)
 - Patto tra i tre — nel repo privato [`team`](https://github.com/ExhaustedTokens/team) (accordi, quote, rendiconto)
 - [`docs/onboarding.md`](docs/onboarding.md) — come entrare nel progetto: GitHub, Claude Code, regole
 - [`docs/sviluppo.md`](docs/sviluppo.md) — principi, rami, commit, versioni, qualità automatica, pipeline
