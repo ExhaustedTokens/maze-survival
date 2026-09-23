@@ -64,7 +64,7 @@ lo fa come attività professionale: rilevante per il patto (repo privato `team`)
    iscritti dal 28 maggio 2026; lo stipendio va solo a chi già guadagnava, l'Activity Bonus solo a chi è invitato agli
    strumenti in early access. Un "nuovo programma bonus basato su metriche" è promesso senza data.
 3. **Le entrate possibili oggi** sono due: vendite in-world (quota Meta da verificare) e competizioni
-   (montepremi da 250.000 $ a 2,5 M$, primi premi 20.000–200.000 $, Italia ammessa, nessuna aperta al momento).
+   (montepremi da 250.000 $ a 2,5 M$, primi premi 20.000–200.000 $, Italia ammessa; nessuna confermata aperta a cui possiamo partecipare: "Game Prototype" ha date da verificare e richiedeva l'iscrizione entro il 10 agosto 2026).
 4. **La piattaforma è in mezzo a un cambio di strumenti**: prima di scrivere codice di gioco va capito con l'issue #6 su
    quale strumento si costruisce (Desktop Editor attuale o "early access tools"), perché costruire sullo strumento sbagliato
    butta via mesi.
