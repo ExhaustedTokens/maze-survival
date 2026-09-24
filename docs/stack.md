@@ -60,8 +60,9 @@ Il lavoro sul tooling è nella #22.
 Dalla pagina "Recommended Version Control Strategies":
 
 - L'editor scrive tutti gli script del mondo in una cartella locale, la **"auto-sync directory"**, e la tiene
-  sincronizzata con il mondo **nei due sensi**: se modifichi un file lì, la modifica va nel mondo; se un collaboratore
-  modifica uno script, il file locale viene sovrascritto.
+  sincronizzata con il mondo **nei due sensi per le modifiche**: se modifichi un file lì, la modifica va nel mondo; se
+  un collaboratore modifica uno script, il file locale viene sovrascritto. **Le cancellazioni no**: togliere un file non
+  toglie lo script dal mondo (verificato, vedi sotto).
 - Meta stessa lo paragona a Git senza controllo: "every time one of your teammates updates a script file locally, it's
   immediately force-pushed to the main branch of your repository".
 - Per i team **Meta raccomanda Git**, con queste regole:
@@ -94,7 +95,7 @@ Dalla pagina "Recommended Version Control Strategies":
 | Nostro concetto | In Horizon |
 |---|---|
 | repo `maze-survival`, ramo `dev` | codice sorgente e storia; si lavora fuori dalla auto-sync directory |
-| ambiente `staging` | un **mondo clone** privato: la sua auto-sync directory fa `git pull` di `staging` |
+| ambiente `staging` | un **mondo clone**, da tenere privato: **come renderlo privato non è ancora verificato** (#22); la sua auto-sync directory riceve i file di `staging` |
 | ambiente `production` | il **mondo principale** pubblicato: la sua auto-sync directory fa `git pull` di `main` |
 | "deploy" | `git pull` nella auto-sync directory del mondo giusto, a editor aperto, poi "Publish" |
 
@@ -202,7 +203,7 @@ che si muove costa. Un labirinto con pareti mobili va progettato con pochi ogget
 |---|---|---|
 | 1 | Installare l'editor, versione e percorso della auto-sync directory | ✅ editor **v284.0.0.1.239** (installer MSI firmato "Meta Platforms, Inc.", circa 805 MB); cartella al §3 |
 | 2 | Mondo come "custom model world" | ⚠️ l'editor non ha chiesto il tipo di mondo: i mondi nuovi del Desktop Editor sembrano già di quel tipo (le primitive sono "the legacy way"). Si conferma importando il primo FBX (#7) |
-| 3 | Script di prova, pubblicazione, telefono e web, tempo di pubblicazione | ✅ tutto funziona (§4, §5); pubblicazione in pochi secondi |
+| 3 | Script di prova, pubblicazione, telefono e web, tempo di pubblicazione | ✅ tutto funziona (§4, §5); pubblicazione in pochi secondi. ⚠️ Il mondo di prova doveva essere privato o non in elenco, ma la finestra di pubblicazione non ha opzioni di visibilità e l'anteprima su telefono richiede almeno una pubblicazione: il mondo di prova è **pubblico**. Come tenere privato un mondo (per lo staging) passa alla #22 |
 | 4 | Versione di TypeScript e tipi di `horizon/*` | ✅ TypeScript **4.7.4**, API **2.0.0**, tipi in `types/` (§2) |
 | 5 | Sottocartelle e import tra script | ✅ **solo file piatti**; import per nome del modulo (§3) |
 | 6 | Giro Git nella auto-sync directory | ⏳ spostato nella #22: la sincronizzazione cartella → mondo di file scritti da fuori è confermata, il giro completo con un clone del repo e un mondo clone no |
