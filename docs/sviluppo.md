@@ -93,6 +93,10 @@ Perché sia possibile, il codice ha due zone:
 - `src/horizon/`: **adattatori sottili** verso le API di Horizon (componenti, eventi, entità). Nessun `if` di gioco:
   ricevono eventi e chiamano il core. Si provano a mano nel mondo di staging.
 
+Attenzione: nel mondo gli script arrivano **piatti**, senza sottocartelle, e si importano per nome di modulo
+(`stack.md` §3). Le due zone sono una regola logica; come si mappano sui file (nomi, cartelle, script di copia) si
+decide nella #22, prima di scrivere il primo codice di gioco.
+
 Copertura minima **80 %** su righe, funzioni, rami e istruzioni della zona core, misurata da Vitest: sotto, la CI fallisce.
 Il report appare come commento sulla PR e nel riepilogo del job `test`. La soglia si alza, non si abbassa.
 
@@ -122,15 +126,19 @@ Nuova regola o eccezione a una regola: nella PR, motivata nella descrizione. Mai
 | `release` | push su `staging`/`main` (o lanciato da `promote`) | rifà i controlli, costruisce, zippa `dist`, `semantic-release` crea tag e GitHub Release (pre-release su staging) |
 
 **Deploy su Horizon.** Meta non offre un'API per pubblicare mondi: la pubblicazione passa dal Desktop Editor, che
-compila lui i file `.ts` presenti nella sua "auto-sync directory" (dettagli in [`stack.md`](stack.md) §3). Il flusso
-previsto, da confermare con la prova pratica della #6:
+compila lui (con TypeScript 4.7.4) i file `.ts` presenti nella sua "auto-sync directory",
+`%USERPROFILE%\AppData\LocalLow\Meta\Horizon Worlds\<id mondo>\scripts\` (dettagli in [`stack.md`](stack.md) §3).
+La prova della #6 ha confermato che un file scritto lì viene compilato e messo nel mondo in pochi secondi, e che la
+pubblicazione dall'editor richiede pochi secondi. Il flusso previsto:
 
 1. `promote` porta il commit su `staging` o `main` (qualità garantita dalla CI).
 2. Chi pubblica apre nell'editor il mondo giusto: il **mondo clone** per `staging`, il **mondo principale** per `main`.
-3. Nella auto-sync directory di quel mondo, che è un clone Git del repo, fa `git pull` del ramo corrispondente.
-4. Verifica in anteprima (anche "Preview device: Mobile") e pubblica.
+3. Porta nella auto-sync directory di quel mondo i file del ramo corrispondente: `git pull` se la cartella è un clone
+   del repo, oppure lo script di copia. Il giro esatto, con i file piatti, si definisce nella #22.
+4. Verifica in anteprima (anche "Preview device: Mobile") e pubblica con "Publish".
 
-Lo zip di `dist/` allegato oggi alle release non serve al mondo (ci vanno i sorgenti `.ts`): si rivede dopo la prova.
+Gli script eliminati nel repo vanno cancellati anche dall'editor: la cancellazione di un file non si propaga.
+Lo zip di `dist/` allegato oggi alle release non serve al mondo (ci vanno i sorgenti `.ts`): si rivede nella #22.
 Il deploy resta manuale: richiede l'editor aperto sul PC di chi pubblica.
 
 ## 7. Protezione dei rami e repo pubblico

@@ -15,17 +15,20 @@ Dettagli e piano a fasi nel [README](README.md).
 Fase 0/1: setup e validazione. **Non c'è ancora codice.** Prima di scrivere codice di gioco vanno chiuse
 le issue con etichetta `fase-1` e la decisione GO/NO-GO.
 
-## Stack (documentazione verificata, prova pratica in corso: [docs/stack.md](docs/stack.md))
+## Stack (verificato con la prova pratica del 24/09/2026: [docs/stack.md](docs/stack.md))
 
-- **Meta Horizon Desktop Editor** (solo Windows, gratuito) con scripting **TypeScript**: è l'unico strumento
+- **Meta Horizon Desktop Editor** (solo Windows, gratuito, v284) con scripting **TypeScript**: è l'unico strumento
   documentato e aperto a tutti; gli strumenti VR sono "legacy". Gira in locale su Windows, eccezione alla regola
-  "tutto in Docker/WSL"; lint e test restano in Docker.
-- **L'editor compila lui il TypeScript** e, secondo la documentazione, richiede **TypeScript 4.7.4**: il codice che
-  finisce nel mondo non deve usare sintassi 5.x (`satisfies`, parametri `const`, ecc.) finché la prova (#6) non dice
-  altrimenti.
-- **Il codice vive nella "auto-sync directory"** dell'editor, sincronizzata con il mondo nei due sensi. Meta
-  raccomanda Git: si lavora fuori da quella cartella, si mergia con PR, poi `git pull` dentro la cartella; i mondi
-  clone fanno da rami (staging = clone, produzione = mondo principale). Il deploy non si automatizza dalla CI.
+  "tutto in Docker/WSL"; lint e test restano in Docker. Il mondo di prova gira su telefono e web.
+- **L'editor compila lui il TypeScript con la versione 4.7.4** (fissata nella cartella degli script), API Horizon
+  **2.0.0**: il codice che finisce nel mondo non deve usare sintassi 5.x (`satisfies`, parametri `const`, ecc.).
+- **Il codice vive nella "auto-sync directory"** del mondo
+  (`%USERPROFILE%\AppData\LocalLow\Meta\Horizon Worlds\<id mondo>\scripts\`), sincronizzata con il mondo in 3–5 s.
+  Solo **file piatti**, niente sottocartelle; il nome del file è il nome del modulo (`import { x } from 'NomeScript'`).
+  Cancellare un file dalla cartella non toglie lo script dal mondo: si cancella dall'editor. Meta raccomanda Git: si
+  lavora fuori da quella cartella, si mergia con PR, poi `git pull` dentro la cartella; i mondi clone fanno da rami
+  (staging = clone, produzione = mondo principale). Il deploy non si automatizza dalla CI.
+- La Console dell'editor può non caricarsi: per il debug usare `this.world.ui.showPopupForPlayer(...)`.
 - **Blender** per gli asset: FBX + PNG, niente animazioni importate, niente normal map; convenzioni e budget in
   `docs/pipeline-3d.md` (issue #7, PR #20). Il mondo va creato come "custom model world".
 - Limiti chiave: 32 giocatori per istanza, 3.000 oggetti con mesh, 4,2 ms di simulazione per oggetti in movimento,

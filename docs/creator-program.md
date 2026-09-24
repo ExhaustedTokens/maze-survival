@@ -57,7 +57,9 @@ Italia per chi incassa (partita IVA o altro) i Termini non lo dicono: lo valuta 
   dal 15 giugno 2026 "the Horizon
   Worlds app will be removed from Quest, and Worlds will no longer be available in VR and will instead be available only
   through the Meta Horizon mobile app". I vantaggi Meta Horizon+ legati a Worlds (Meta Credits, abbigliamento digitale,
-  avatar, acquisti in-world) escono dall'abbonamento.
+  avatar, acquisti in-world) escono dall'abbonamento. **Conferma ufficiale della data (24/09/2026)**: la finestra di
+  pubblicazione del Desktop Editor di Meta mostra "Starting June 15, 2026, new VR world publishing will no longer be
+  available. You can continue to update any VR worlds you've already published." (vedi `docs/stack.md` §5).
 - 9 giugno 2026: i Meta Credits non si comprano più nello store Horizon, "Meta Credits continue to be available in Horizon
   Worlds".
 - Strumenti: Meta parla di "new creation tools", "early access tooling" e di Meta Horizon Studio/Engine. La competizione
